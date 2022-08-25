@@ -9,26 +9,20 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-
-
-  // if(!kIsWeb){
-  //   WidgetsFlutterBinding.ensureInitialized();
-  //   Firebase.initializeApp();
-  //
-  // }
-  // else {
-  //   Firebase.initializeApp(
-  //       options: const FirebaseOptions(
-  //       apiKey: "AIzaSyAgaYJUD6-a3KrzstJsBYQbGmXtNL1wrfM",
-  //
-  //         appId: "1:985062138170:web:acecc4736427e8956f7003",
-  //       messagingSenderId:  "985062138170",
-  //       projectId: "inventorymanagementsyste-75955",
-  //
-  //   ),
-  //   );
-  // }
-        runApp( MyApp());
+  if (!kIsWeb) {
+    WidgetsFlutterBinding.ensureInitialized();
+    Firebase.initializeApp();
+  } else {
+    Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyAgaYJUD6-a3KrzstJsBYQbGmXtNL1wrfM",
+        appId: "1:985062138170:web:acecc4736427e8956f7003",
+        messagingSenderId: "985062138170",
+        projectId: "inventorymanagementsyste-75955",
+      ),
+    );
+  }
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -51,32 +45,18 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:  Home(),
-
-
-
-
-      initialRoute: FirebaseAuth.instance.currentUser == null
-          ?'/home'
-          : '/home',
-      routes:{
-
-        '/login':(context)=>Login(),
+      home: Home(),
+      initialRoute:
+          FirebaseAuth.instance.currentUser == null ? '/home' : '/home',
+      routes: {
+        '/login': (context) => Login(),
         //SignUp.idScreen:(context)=>SignUp(),
-       // ForgotPassword.id:(context)=>ForgotPassword(),
+        // ForgotPassword.id:(context)=>ForgotPassword(),
         //'/onboarding':(context)=>OnBoardingPage(),
-        '/home':(context)=>Home(),
+        '/home': (context) => Home(),
         //SearchScreen.idScreen: (context) => SearchScreen(),
         //profilescreen.idScreen:(context)=>  profilescreen(),
-
-
-      }
-
-      ,
-
+      },
     );
   }
 }
-
-
-
