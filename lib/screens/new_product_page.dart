@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:warehouse_management/functions/toast.dart';
-import 'package:warehouse_management/models/product.dart';
-import 'package:warehouse_management/utils/color_palette.dart';
-import 'package:warehouse_management/widgets/location_drop_down.dart';
+
+import '../functions/toast.dart';
+import '../models/product.dart';
+import '../utils/color_palette.dart';
+import '../widgets/location_drop_down.dart';
 
 class NewProductPage extends StatelessWidget {
   final String? group;

@@ -1,6 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../models/product.dart';
+import '../screens/product_details_page.dart';
+import '../utils/color_palette.dart';
+
 class ProductCard extends StatelessWidget {
   final Product? product;
   final String? docID;

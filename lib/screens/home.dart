@@ -2,11 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:warehouse_management/functions/confirm_dialog.dart';
-import 'package:warehouse_management/functions/toast.dart';
-import 'package:warehouse_management/screens/global_search_page.dart';
-import 'package:warehouse_management/utils/color_palette.dart';
-import 'package:warehouse_management/widgets/product_group_card.dart';
+
+import '../functions/confirm_dialog.dart';
+import '../functions/toast.dart';
+import '../utils/color_palette.dart';
+import '../widgets/product_group_card.dart';
+import 'global_search_page.dart';
+
 
 class Home extends StatelessWidget {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;

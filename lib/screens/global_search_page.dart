@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:warehouse_management/models/product.dart';
-import 'package:warehouse_management/utils/color_palette.dart';
-import 'package:warehouse_management/widgets/product_card.dart';
+
+import '../models/product.dart';
+import '../utils/color_palette.dart';
+import '../widgets/product_card.dart';
+
 
 class GlobalSearchPage extends StatefulWidget {
   const GlobalSearchPage({Key? key}) : super(key: key);
