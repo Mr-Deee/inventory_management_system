@@ -32,14 +32,46 @@
   <title>inventory_management_system</title>
   <link rel="manifest" href="manifest.json">
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
-  </script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>  -->
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
 <body>
+<script>
+var  firebaseConfig = {
+
+apiKey: "AIzaSyAgaYJUD6-a3KrzstJsBYQbGmXtNL1wrfM",
+
+authDomain: "inventorymanagementsyste-75955.firebaseapp.com",
+
+projectId: "inventorymanagementsyste-75955",
+
+storageBucket: "inventorymanagementsyste-75955.appspot.com",
+
+messagingSenderId: "985062138170",
+
+appId: "1:985062138170:web:acecc4736427e8956f7003",
+
+measurementId: "G-P2DM48DRDX"
+
+};
+
+firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+
+/
+ </script>
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
