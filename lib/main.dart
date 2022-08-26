@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_management_system/screens/home.dart';
 import 'package:inventory_management_system/screens/login.dart';
+import 'package:inventory_management_system/screens/signup.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,15 +26,17 @@ void main() async {
   }
   runApp(MyApp());
 }
+DatabaseReference  users = FirebaseDatabase.instance.ref().child("users");
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  const MyApp({Key? key}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Inventory Management System',
+      debugShowCheckedModeBanner: false,
+
+      title: 'IMS',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -45,12 +49,12 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Home(),
+      // home: Login(),
       initialRoute:
-          FirebaseAuth.instance.currentUser == null ? '/home' : '/home',
+          FirebaseAuth.instance.currentUser == null ? '/SignUp' : '/SignUp',
       routes: {
         '/login': (context) => Login(),
-        //SignUp.idScreen:(context)=>SignUp(),
+        '/SignUp':(context)=>SignUp(),
         // ForgotPassword.id:(context)=>ForgotPassword(),
         //'/onboarding':(context)=>OnBoardingPage(),
         '/home': (context) => Home(),
