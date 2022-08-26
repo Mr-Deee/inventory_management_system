@@ -1,10 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:inventory_management_system/screens/signup.dart';
 
 import '../functions/toast.dart';
 import '../utils/color_palette.dart';
 import '../utils/svg_strings.dart';
+import '../widgets/custom_richtext.dart';
+import '../widgets/progressDialog.dart';
+import 'home.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -49,213 +54,277 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      // onTap: () {
-      //   final FocusScopeNode currentFocus = FocusScope.of(context);
-      //   if (!currentFocus.hasPrimaryFocus) {
-      //     currentFocus.unfocus();
-      //   }
-      // },
-      child: Scaffold(
+    return  Scaffold(
         backgroundColor: ColorPalette.aquaHaze,
-        resizeToAvoidBottomInset: false,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 36),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Expanded(child: SizedBox()),
-              SvgPicture.string(SvgStrings.warehouse),
-              const SizedBox(
-                height: 18,
-              ),
-              const Text(
-                "Warehouse\nManagement",
-                style: TextStyle(
-                  fontFamily: "Nunito",
-                  fontSize: 40,
+        // resizeToAvoidBottomInset: false,
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 26),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+
+                Padding(
+                  padding: const EdgeInsets.only(top:50.0),
+                  child: SvgPicture.string(SvgStrings.warehouse),
                 ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                children: [
-                  SvgPicture.string(SvgStrings.location),
-                  const SizedBox(
-                    width: 10,
+                const SizedBox(
+                  height: 18,
+                ),
+                const Text(
+                  "Inventory\nManagement",
+                  style: TextStyle(
+                    fontFamily: "Nunito",
+                    fontSize: 40,
                   ),
-                  const Text(
-                    "XYZ's Godown",
-                    style: TextStyle(fontFamily: "Open_Sans", fontSize: 20),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: ColorPalette.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: const Offset(0, 3),
-                      blurRadius: 6,
-                      color: const Color(0xff000000).withOpacity(0.16),
+                ),
+
+                Row(
+                  children: [
+
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    const Text(
+                      "XYZ's Godown",
+                      style: TextStyle(fontFamily: "Open_Sans", fontSize: 20),
                     ),
                   ],
                 ),
-                height: 50,
-                child: TextField(
-                  textInputAction: TextInputAction.next,
-                  key: UniqueKey(),
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  style: const TextStyle(
-                    fontFamily: "Nunito",
-                    fontSize: 16,
-                    color: ColorPalette.nileBlue,
+                const SizedBox(
+                  height: 50,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: ColorPalette.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        offset: const Offset(0, 3),
+                        blurRadius: 6,
+                        color: const Color(0xff000000).withOpacity(0.16),
+                      ),
+                    ],
                   ),
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Email",
-                    filled: true,
-                    fillColor: Colors.transparent,
-                    hintStyle: TextStyle(
+                  height: 50,
+                  child: TextField(
+                    textInputAction: TextInputAction.next,
+                    key: UniqueKey(),
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    style: const TextStyle(
                       fontFamily: "Nunito",
                       fontSize: 16,
-                      color: ColorPalette.nileBlue.withOpacity(0.58),
+                      color: ColorPalette.nileBlue,
                     ),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Email",
+                      filled: true,
+                      fillColor: Colors.transparent,
+                      hintStyle: TextStyle(
+                        fontFamily: "Nunito",
+                        fontSize: 16,
+                        color: ColorPalette.nileBlue.withOpacity(0.58),
+                      ),
+                    ),
+                    cursorColor: ColorPalette.timberGreen,
                   ),
-                  cursorColor: ColorPalette.timberGreen,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: ColorPalette.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: const Offset(0, 3),
-                      blurRadius: 6,
-                      color: const Color(0xff000000).withOpacity(0.16),
-                    ),
-                  ],
+                const SizedBox(
+                  height: 20,
                 ),
-                height: 50,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        key: UniqueKey(),
-                        obscureText: !_isVisible,
-                        controller: _passwordController,
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.visiblePassword,
-                        style: const TextStyle(
-                          fontFamily: "Nunito",
-                          fontSize: 16,
-                          color: ColorPalette.nileBlue,
-                        ),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "Password",
-                          filled: true,
-                          fillColor: Colors.transparent,
-                          hintStyle: TextStyle(
+                Container(
+                  decoration: BoxDecoration(
+                    color: ColorPalette.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        offset: const Offset(0, 3),
+                        blurRadius: 6,
+                        color: const Color(0xff000000).withOpacity(0.16),
+                      ),
+                    ],
+                  ),
+                  height: 50,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          key: UniqueKey(),
+                          obscureText: !_isVisible,
+                          controller: _passwordController,
+                          textInputAction: TextInputAction.done,
+                          keyboardType: TextInputType.visiblePassword,
+                          style: const TextStyle(
                             fontFamily: "Nunito",
                             fontSize: 16,
-                            color: ColorPalette.nileBlue.withOpacity(0.58),
+                            color: ColorPalette.nileBlue,
                           ),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Password",
+                            filled: true,
+                            fillColor: Colors.transparent,
+                            hintStyle: TextStyle(
+                              fontFamily: "Nunito",
+                              fontSize: 16,
+                              color: ColorPalette.nileBlue.withOpacity(0.58),
+                            ),
+                          ),
+                          cursorColor: ColorPalette.timberGreen,
                         ),
-                        cursorColor: ColorPalette.timberGreen,
                       ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.remove_red_eye,
+                          color: _isVisible ? Colors.black : Colors.grey,
+                          size: 20,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isVisible = !_isVisible;
+                          });
+                        },
+                        splashColor: Colors.transparent,
+                        splashRadius: 1,
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Center(
+                  child: Text(
+                    _failed ? "Enter valid credentials!" : "",
+                    style: const TextStyle(
+                      color: ColorPalette.mandy,
+                      fontFamily: "Nunito",
                     ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.remove_red_eye,
-                        color: _isVisible ? Colors.black : Colors.grey,
-                        size: 20,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _isVisible = !_isVisible;
-                        });
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () async {
+                       loginAndAuthenticateUser(context);
                       },
-                      splashColor: Colors.transparent,
-                      splashRadius: 1,
+                      child: Container(
+                        height: 50,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: ColorPalette.pacificBlue,
+                          boxShadow: [
+                            BoxShadow(
+                              offset: const Offset(0, 3),
+                              blurRadius: 6,
+                              color: const Color(0xff000000).withOpacity(0.16),
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: _loading
+                              ? const SizedBox(
+                                  height: 15,
+                                  width: 15,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: ColorPalette.aquaHaze,
+                                  ),
+                                )
+                              : const Text(
+                                  "Login",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: "Nunito",
+                                    color: ColorPalette.white,
+                                  ),
+                                ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Center(
-                child: Text(
-                  _failed ? "Enter valid credentials!" : "",
-                  style: const TextStyle(
-                    color: ColorPalette.mandy,
-                    fontFamily: "Nunito",
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () async {
-                      await signIn();
-                    },
-                    child: Container(
-                      height: 50,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: ColorPalette.pacificBlue,
-                        boxShadow: [
-                          BoxShadow(
-                            offset: const Offset(0, 3),
-                            blurRadius: 6,
-                            color: const Color(0xff000000).withOpacity(0.16),
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: _loading
-                            ? const SizedBox(
-                                height: 15,
-                                width: 15,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: ColorPalette.aquaHaze,
-                                ),
-                              )
-                            : const Text(
-                                "Login",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: "Nunito",
-                                  color: ColorPalette.white,
-                                ),
-                              ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const Expanded(child: SizedBox()),
-            ],
+
+                CustomRichText(
+                  discription: 'Already Have an account? ',
+                  text: 'Sign Up',
+                  onTap: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>  SignUp()));
+                  },
+                )
+              ],
+            ),
           ),
         ),
-      ),
+
     );
+  }
+
+  void loginAndAuthenticateUser(BuildContext context) async
+  {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return ProgressDialog(message: "Logging you ,Please wait.",);
+        }
+
+
+    );
+
+
+
+
+    final User? firebaseUser = (await firebaseAuth
+        .signInWithEmailAndPassword(
+      email: _emailController.text.toString().trim(),
+      password: _passwordController.text.toString().trim(),
+    ).catchError((errMsg) {
+      Navigator.pop(context);
+      displayToast("Error" + errMsg.toString(), context);
+    })).user;
+    try {
+      UserCredential userCredential = await firebaseAuth
+          .signInWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text);
+
+
+      if (firebaseUser != null) {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>  Home()));
+
+
+        displayToast("Logged-in ",
+            context);
+      } else {
+        displayToast("Error: Cannot be signed in", context);
+      }
+
+
+    } catch (e) {
+      // handle error
+    }
+
+
+
+
+
+  }
+  displayToast(String message, BuildContext context) {
+    Fluttertoast.showToast(msg: message);
   }
 }

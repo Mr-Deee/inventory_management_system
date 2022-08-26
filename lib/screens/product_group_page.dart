@@ -162,7 +162,7 @@ class ProductGroupPage extends StatelessWidget {
                                     snapshot,
                               ) {
                                 if (!snapshot.hasData) {
-                                  return const Center(
+                                  return  Center(
                                     child: SizedBox(
                                       height: 40,
                                       width: 40,
@@ -184,6 +184,7 @@ class ProductGroupPage extends StatelessWidget {
                                     );
                                   },
                                 );
+
                               },
                             ),
                           ),
