@@ -152,7 +152,7 @@ class ProductGroupPage extends StatelessWidget {
                             child: StreamBuilder(
                               stream: _firestore
                                   .collection("products")
-                                  .where("group", isEqualTo: name)
+                                  .where("group",)
                                   .orderBy('name')
                                   .snapshots(),
                               builder: (

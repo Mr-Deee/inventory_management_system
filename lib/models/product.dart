@@ -26,7 +26,7 @@ class Product {
         location: json["location"] as String?,
         company: json["company"] as String?,
         quantity: json["quantity"] as int?,
-        image: json["image"] as String?,
+       // image: json["image"] as String?,
         description: json["description"] as String?,
     );
 
@@ -37,7 +37,7 @@ class Product {
         "location": location,
         "company": company,
         "quantity": quantity,
-        "image": image,
+       // "image": image,
         "description": description,
     };
 }
