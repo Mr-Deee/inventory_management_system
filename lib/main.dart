@@ -9,13 +9,13 @@ import 'package:inventory_management_system/screens/signup.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
 
-  if (!kIsWeb) {
-    WidgetsFlutterBinding.ensureInitialized();
-    Firebase.initializeApp();
-  } else {
-    Firebase.initializeApp(
+  // if (!kIsWeb) {
+  //   WidgetsFlutterBinding.ensureInitialized();
+  //   Firebase.initializeApp();
+  // } else {
+  //   Firebase.initializeApp(
       options: const FirebaseOptions(
         apiKey: "AIzaSyAgaYJUD6-a3KrzstJsBYQbGmXtNL1wrfM",
         appId: "1:985062138170:web:acecc4736427e8956f7003",
@@ -23,7 +23,7 @@ void main() async {
         projectId: "inventorymanagementsyste-75955",
       ),
     );
-  }
+  // }
   runApp(MyApp());
 }
 DatabaseReference  users = FirebaseDatabase.instance.ref().child("users");
