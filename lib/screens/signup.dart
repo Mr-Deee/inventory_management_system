@@ -25,13 +25,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final List<String> imageList = [
-    "assets/images/barber.png",
-    "assets/images/carpenter.png",
-    "assets/images/mechanic.png",
 
-    //'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-  ];
   final _userName = TextEditingController();
   final _lastName = TextEditingController();
   final _emailController = TextEditingController();

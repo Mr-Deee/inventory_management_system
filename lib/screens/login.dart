@@ -67,13 +67,13 @@ class _LoginState extends State<Login> {
 
                 Padding(
                   padding: const EdgeInsets.only(top:50.0),
-                  child: SvgPicture.string(SvgStrings.warehouse),
+                  child:Image.asset( 'Assets/images/cement.png'),
                 ),
                 const SizedBox(
                   height: 18,
                 ),
                 const Text(
-                  "Inventory\nManagement",
+                  "Cement\nManagement",
                   style: TextStyle(
                     fontFamily: "Nunito",
                     fontSize: 40,
@@ -87,7 +87,7 @@ class _LoginState extends State<Login> {
                       width: 10,
                     ),
                     const Text(
-                      "XYZ's Godown",
+                      "",
                       style: TextStyle(fontFamily: "Open_Sans", fontSize: 20),
                     ),
                   ],
