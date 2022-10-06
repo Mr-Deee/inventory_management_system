@@ -53,215 +53,154 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorPalette.brown,
       body: SingleChildScrollView(
         child: Column(
                 children: [
                   SizedBox(
                           height: MediaQuery.of(context).size.height,
                           width: MediaQuery.of(context).size.width,
-                          child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
+                          child: SingleChildScrollView(
+                            child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
 
 
 
-                                    Padding(
-                                      padding: const EdgeInsets.only(top:50.0,left:30),
-                                      child: SvgPicture.string(SvgStrings.warehouse),
-                                    ),
-
-                                    Padding(
-                                      padding: const EdgeInsets.all(30.0),
-                                      child: const Text(
-                                        "Inventory\nManagement",
-                                        style: TextStyle(
-                                          fontFamily: "Nunito",
-                                          fontSize: 40,
+                                      Padding(
+                                        padding: const EdgeInsets.only(top:50.0),
+                                        child:Image.asset( 'Assets/images/cement.png'),
+                                      ),
+                                      const SizedBox(
+                                        height: 18,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(20.0),
+                                        child: Text(
+                                          "Cement\nManagement",
+                                          style: TextStyle(
+                                            color: ColorPalette.pacificBlue,
+                                            fontFamily: "Nunito",
+                                            fontSize: 40,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 2,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top:8.0,left: 30),
-                                      child: Row(
+                                      const SizedBox(
+                                        height: 2,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top:8.0,left: 30),
+                                        child: Row(
+                                          children: [
+                                            // SvgPicture.string(SvgStrings.location),
+
+                                            const Text(
+                                              "Sign Up",
+                                              style: TextStyle(
+                                                  color: ColorPalette.pacificBlue,
+                                                  fontFamily: "Open_Sans", fontSize: 20),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+
+
+
+                                      Column(
                                         children: [
-                                          // SvgPicture.string(SvgStrings.location),
                                           const SizedBox(
-                                            width: 10,
+                                            height: 3,
                                           ),
-                                          const Text(
-                                            "Sign Up",
-                                            style: TextStyle(fontFamily: "Open_Sans", fontSize: 20),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-
-
-
-                                    Column(
-                                      children: [
-                                        const SizedBox(
-                                          height: 3,
-                                        ),
-                                        //username
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            SizedBox(
-                                              width: 330,
-                                              child: Container(
-                                                margin: const EdgeInsets.all(10.0),
-                                                child: TextFormField(
-                                                  onChanged: (value) {
-                                                    _UName = value;
-                                                  },
-                                                  //keyboardType: TextInputType.visiblePassword,
-                                                  validator: (val) {
-                                                    return val!.length > 6
-                                                        ? null
-                                                        : "User Name";
-                                                  },
-                                                  controller: _userName,
-                                                  textCapitalization:
-                                                  TextCapitalization.none,
-                                                  decoration: InputDecoration(
-                                                    hintText: 'User Name',
-                                                    hintStyle: const TextStyle(
-                                                      fontSize: 13,
-                                                      color: Color(0xFFb1b2c4),
-                                                    ),
-                                                    border: new OutlineInputBorder(
-                                                      borderSide: BorderSide.none,
-                                                      borderRadius:
-                                                      BorderRadius.circular(60),
-                                                    ),
-                                                    focusedBorder: OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Theme.of(context)
-                                                              .primaryColor),
-                                                      borderRadius:
-                                                      BorderRadius.circular(60),
-                                                    ),
-                                                    filled: true,
-                                                    fillColor:
-                                                    Colors.black.withOpacity(0.05),
-                                                    contentPadding: EdgeInsets.symmetric(
-                                                      vertical: 20.0,
-                                                      horizontal: 25.0,
-                                                    ),
-                                                    prefixIcon: Icon(
-                                                      Icons.account_circle,
-                                                      color: ColorPalette.bondyBlue,
-                                                    ),
-                                                    //
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-
-                                          ],
-                                        ),
-
-                                        //email
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            SizedBox(
-                                              width: 330,
-                                              child: Container(
-                                                margin: const EdgeInsets.all(10.0),
-                                                child: TextFormField(
-                                                  onChanged: (value) {
-                                                    _email = value;
-                                                  },
-                                                  keyboardType:
-                                                  TextInputType.visiblePassword,
-                                                  validator: (val) {
-                                                    return val!.length > 6
-                                                        ? null
-                                                        : "Email ";
-                                                  },
-                                                  controller: _emailController,
-                                                  textCapitalization:
-                                                  TextCapitalization.none,
-                                                  decoration: InputDecoration(
-                                                    hintText: 'Email',
-                                                    hintStyle: const TextStyle(
-                                                      fontSize: 13,
-                                                      color: Color(0xFFb1b2c4),
-                                                    ),
-                                                    border: OutlineInputBorder(
-                                                      borderSide: BorderSide.none,
-                                                      borderRadius:
-                                                      BorderRadius.circular(60),
-                                                    ),
-                                                    focusedBorder: OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                          color: Theme.of(context)
-                                                              .primaryColor),
-                                                      borderRadius:
-                                                      BorderRadius.circular(60),
-                                                    ),
-                                                    filled: true,
-                                                    fillColor:
-                                                    Colors.black.withOpacity(0.05),
-                                                    contentPadding:
-                                                    const EdgeInsets.symmetric(
-                                                      vertical: 20.0,
-                                                      horizontal: 25.0,
-                                                    ),
-                                                    prefixIcon: const Icon(
-                                                      Icons.email,
-                                                      color: ColorPalette.bondyBlue,                                                    ),
-                                                    //
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-
-
-
-                                            //Date
-
-                                          ],
-                                        ),
-
-                                        //Password
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            SizedBox(
-                                              width: 330,
-                                              child: Container(
-                                                margin: const EdgeInsets.all(10.0),
-                                                child: TextFormField(
-                                                  onChanged: (value) {
-                                                    _password = value;
-                                                  },
-                                                  keyboardType:
-                                                  TextInputType.visiblePassword,
-                                                  validator: (val) {
-                                                    return val!.length > 6
-                                                        ? null
-                                                        : "password ";
-                                                  },
-                                                  obscureText: true,
-                                                  controller: _passwordController,
-                                                  textCapitalization:
-                                                  TextCapitalization.none,
-                                                  decoration: InputDecoration(
-                                                      hintText: 'password',
+                                          //username
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              SizedBox(
+                                                width: 330,
+                                                child: Container(
+                                                  margin: const EdgeInsets.all(10.0),
+                                                  child: TextFormField(
+                                                    onChanged: (value) {
+                                                      _UName = value;
+                                                    },
+                                                    //keyboardType: TextInputType.visiblePassword,
+                                                    validator: (val) {
+                                                      return val!.length > 6
+                                                          ? null
+                                                          : "User Name";
+                                                    },
+                                                    controller: _userName,
+                                                    textCapitalization:
+                                                    TextCapitalization.none,
+                                                    decoration: InputDecoration(
+                                                      hintText: 'User Name',
                                                       hintStyle: const TextStyle(
                                                         fontSize: 13,
                                                         color: Color(0xFFb1b2c4),
                                                       ),
-                                                      border: OutlineInputBorder(
+                                                      border: new OutlineInputBorder(
+                                                        borderSide: BorderSide.none,
+                                                        borderRadius:
+                                                        BorderRadius.circular(60),
+                                                      ),
+                                                      focusedBorder: OutlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: Theme.of(context)
+                                                                .primaryColor),
+                                                        borderRadius:
+                                                        BorderRadius.circular(60),
+                                                      ),
+                                                      filled: true,
+                                                      fillColor:
+                                                      Colors.black.withOpacity(0.05),
+                                                      contentPadding: EdgeInsets.symmetric(
+                                                        vertical: 20.0,
+                                                        horizontal: 25.0,
+                                                      ),
+                                                      prefixIcon: Icon(
+                                                        Icons.account_circle,
+                                                        color: ColorPalette.bondyBlue,
+                                                      ),
+                                                      //
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+
+                                            ],
+                                          ),
+
+                                          //email
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              SizedBox(
+                                                width: 330,
+                                                child: Container(
+                                                  margin: const EdgeInsets.all(10.0),
+                                                  child: TextFormField(
+                                                    onChanged: (value) {
+                                                      _email = value;
+                                                    },
+                                                    keyboardType:
+                                                    TextInputType.visiblePassword,
+                                                    validator: (val) {
+                                                      return val!.length > 6
+                                                          ? null
+                                                          : "Email ";
+                                                    },
+                                                    controller: _emailController,
+                                                    textCapitalization:
+                                                    TextCapitalization.none,
+                                                    decoration: InputDecoration(
+                                                      hintText: 'Email',
+                                                      hintStyle: const TextStyle(
+                                                        fontSize: 13,
+                                                        color: Color(0xFFb1b2c4),
+                                                      ),
+                                                      border: new OutlineInputBorder(
                                                         borderSide: BorderSide.none,
                                                         borderRadius:
                                                         BorderRadius.circular(60),
@@ -282,149 +221,220 @@ class _SignUpState extends State<SignUp> {
                                                         horizontal: 25.0,
                                                       ),
                                                       prefixIcon: const Icon(
-                                                        Icons.password,
-                                                        color: ColorPalette.bondyBlue,
-                                                      ),
-                                                      suffixIcon: IconButton(
-                                                          icon: const Icon(
-                                                              Icons.visibility),
-                                                          onPressed: () {})
-                                                    //
+                                                        Icons.email,
+                                                        color: ColorPalette.bondyBlue,                                                    ),
+                                                      //
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
 
 
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          width: 330,
-                                          child: Container(
-                                            margin: const EdgeInsets.all(10.0),
-                                            child: TextFormField(
-                                              onChanged: (value) {
-                                                _mobileNumber = value;
-                                              },
-                                              keyboardType:
-                                              TextInputType.number,
-                                              validator: (val) {
-                                                return val!.length > 6
-                                                    ? null
-                                                    : "password ";
-                                              },
 
-                                              controller: _phoneController,
-                                              textCapitalization:
-                                              TextCapitalization.none,
-                                              decoration: InputDecoration(
-                                                hintText: 'Phone Number',
-                                                hintStyle: const TextStyle(
-                                                  fontSize: 13,
-                                                  color: Color(0xFFb1b2c4),
-                                                ),
-                                                border: OutlineInputBorder(
-                                                  borderSide: BorderSide.none,
-                                                  borderRadius:
-                                                  BorderRadius.circular(60),
-                                                ),
-                                                focusedBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                      color: Theme.of(context)
-                                                          .primaryColor),
-                                                  borderRadius:
-                                                  BorderRadius.circular(60),
-                                                ),
-                                                filled: true,
-                                                fillColor:
-                                                Colors.black.withOpacity(0.05),
-                                                contentPadding:
-                                                const EdgeInsets.symmetric(
-                                                  vertical: 20.0,
-                                                  horizontal: 25.0,
-                                                ),
-                                                prefixIcon: const Icon(
-                                                  Icons.phone,
-                                                  color: ColorPalette.bondyBlue,
-                                                ),
+                                              //Date
 
-                                                //
+                                            ],
+                                          ),
+
+                                          //Password
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              SizedBox(
+                                                width: 330,
+                                                child: Container(
+                                                  margin: const EdgeInsets.all(10.0),
+                                                  child: TextFormField(
+                                                    onChanged: (value) {
+                                                      _password = value;
+                                                    },
+                                                    keyboardType:
+                                                    TextInputType.visiblePassword,
+                                                    validator: (val) {
+                                                      return val!.length > 6
+                                                          ? null
+                                                          : "password ";
+                                                    },
+                                                    obscureText: true,
+                                                    controller: _passwordController,
+                                                    textCapitalization:
+                                                    TextCapitalization.none,
+                                                    decoration: InputDecoration(
+                                                        hintText: 'password',
+                                                        hintStyle: const TextStyle(
+                                                          fontSize: 13,
+                                                          color: Color(0xFFb1b2c4),
+                                                        ),
+                                                        border: new OutlineInputBorder(
+                                                          borderSide: BorderSide.none,
+                                                          borderRadius:
+                                                          BorderRadius.circular(60),
+                                                        ),
+                                                        focusedBorder: OutlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color: Theme.of(context)
+                                                                  .primaryColor),
+                                                          borderRadius:
+                                                          BorderRadius.circular(60),
+                                                        ),
+                                                        filled: true,
+                                                        fillColor:
+                                                        Colors.black.withOpacity(0.05),
+                                                        contentPadding:
+                                                        const EdgeInsets.symmetric(
+                                                          vertical: 20.0,
+                                                          horizontal: 25.0,
+                                                        ),
+                                                        prefixIcon: const Icon(
+                                                          Icons.password,
+                                                          color: ColorPalette.bondyBlue,
+                                                        ),
+                                                        suffixIcon: IconButton(
+                                                            icon: const Icon(
+                                                                Icons.visibility),
+                                                            onPressed: () {})
+                                                      //
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+
+
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            width: 330,
+                                            child: Container(
+                                              margin: const EdgeInsets.all(10.0),
+                                              child: TextFormField(
+                                                onChanged: (value) {
+                                                  _mobileNumber = value;
+                                                },
+                                                keyboardType:
+                                                TextInputType.number,
+                                                validator: (val) {
+                                                  return val!.length > 6
+                                                      ? null
+                                                      : "password ";
+                                                },
+
+                                                controller: _phoneController,
+                                                textCapitalization:
+                                                TextCapitalization.none,
+                                                decoration: InputDecoration(
+                                                  hintText: 'Phone Number',
+                                                  hintStyle: const TextStyle(
+                                                    fontSize: 13,
+                                                    color: Color(0xFFb1b2c4),
+                                                  ),
+                                                  border: OutlineInputBorder(
+                                                    borderSide: BorderSide.none,
+                                                    borderRadius:
+                                                    BorderRadius.circular(60),
+                                                  ),
+                                                  focusedBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Theme.of(context)
+                                                            .primaryColor),
+                                                    borderRadius:
+                                                    BorderRadius.circular(60),
+                                                  ),
+                                                  filled: true,
+                                                  fillColor:
+                                                  Colors.black.withOpacity(0.05),
+                                                  contentPadding:
+                                                  const EdgeInsets.symmetric(
+                                                    vertical: 20.0,
+                                                    horizontal: 25.0,
+                                                  ),
+                                                  prefixIcon: const Icon(
+                                                    Icons.phone,
+                                                    color: ColorPalette.bondyBlue,
+                                                  ),
+
+                                                  //
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
+                                        ],
+                                      ),
 
-                                    const SizedBox(
-                                      height: 16,
-                                    ),
-                                    Center(
-                                      child: ElevatedButton(
-                                        onPressed: ()=> [
-                                          if (_userName.text.length < 0)
-                                            {
-                                              displayToast(
-                                                  "First Name must be at least 3 characters.", context),
-                                            }
-                                          else if(_lastName.text.length<0)
-                                            {
-                                              displayToast(
-                                                  "Last Name must be at least 3 characters.", context),
+                                      const SizedBox(
+                                        height: 16,
+                                      ),
+                                      Center(
+                                        child: ElevatedButton(
 
-                                            }
-                                          else if (!_emailController.text.contains("@"))
+                                          onPressed: ()=> [
+                                            if (_userName.text.length < 0)
                                               {
-                                                displayToast("Email address is not Valid", context),
+                                                displayToast(
+                                                    "First Name must be at least 3 characters.", context),
                                               }
-                                            else if (_phoneController.text.isEmpty)
+                                            else if(_lastName.text.length<0)
+                                              {
+                                                displayToast(
+                                                    "Last Name must be at least 3 characters.", context),
+
+                                              }
+                                            else if (!_emailController.text.contains("@"))
                                                 {
-                                                  displayToast("PhoneNumber are mandatory", context),
+                                                  displayToast("Email address is not Valid", context),
                                                 }
-                                              //
-                                              else if (_passwordController.text.length < 6)
+                                              else if (_phoneController.text.isEmpty)
                                                   {
-                                                    displayToast(
-                                                        "Password must be atleast 6 Characters", context),
+                                                    displayToast("PhoneNumber are mandatory", context),
                                                   }
-                                                else
-                                                  {
-                                                    registerNewUser(context),
-                                                    registerInfirestore(context),
+                                                //
+                                                else if (_passwordController.text.length < 6)
+                                                    {
+                                                      displayToast(
+                                                          "Password must be atleast 6 Characters", context),
+                                                    }
+                                                  else
+                                                    {
+                                                      registerNewUser(context),
+                                                      registerInfirestore(context),
 
 
-                                                  }
-                                                ],
-                                        child:Text( 'Sign Up'),
+                                                    }
+                                                  ],
+                                          child:Text( 'Sign Up'),
 
-                                        style: ButtonStyle(
-                                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                                            backgroundColor: MaterialStateProperty.all<Color>(ColorPalette.bondyBlue),
-                                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                                RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(18.0),
-                                                    side: BorderSide(color: ColorPalette.bondyBlue)
-                                                )
-                                            )
-                                        )
+                                          style: ButtonStyle(
+
+                                              foregroundColor: MaterialStateProperty.all<Color>(ColorPalette.pacificBlue),
+                                              backgroundColor: MaterialStateProperty.all<Color>(ColorPalette.brown),
+                                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+
+                                                  RoundedRectangleBorder(
+
+                                                      borderRadius: BorderRadius.circular(18.0),
+                                                      side: BorderSide(color: ColorPalette.brown)
+                                                  )
+                                              )
+                                          )
 
                         ),
-                                    ),
+                                      ),
 
 
 
-                                    CustomRichText(
-                                      discription: 'Already Have an account? ',
-                                      text: 'Log In here',
-                                      onTap: () {
-                                        Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>  Login()));
-                                      },
-                                    )
+                                      CustomRichText(
+                                        discription: 'Already Have an account? ',
+                                        text: 'Log In here',
+                                        onTap: () {
+                                          Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>  Login()));
+                                        },
+                                      )
                 ],
-              )),
+              ),
+                          )),
 
       ]),
 

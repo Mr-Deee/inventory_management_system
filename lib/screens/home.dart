@@ -30,9 +30,13 @@ class Home extends StatelessWidget {
               context: context,
               builder: (context) {
                 return AlertDialog(
+
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
                   title: const Text(
                     "Add Product Group",
-                    style: TextStyle(fontFamily: "Nunito"),
+                    style: TextStyle(fontFamily: "Nunito",color: ColorPalette.brown),
                   ),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -68,7 +72,7 @@ class Home extends StatelessWidget {
                             hintStyle: TextStyle(
                               fontFamily: "Nunito",
                               fontSize: 16,
-                              color: ColorPalette.nileBlue.withOpacity(0.58),
+                              color: ColorPalette.brown.withOpacity(0.58),
                             ),
                           ),
                           cursorColor: ColorPalette.timberGreen,
@@ -114,7 +118,7 @@ class Home extends StatelessWidget {
                           width: 90,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: ColorPalette.pacificBlue,
+                            color: ColorPalette. brown,
                             boxShadow: [
                               BoxShadow(
                                 offset: const Offset(0, 3),
@@ -130,7 +134,7 @@ class Home extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 15,
                                 fontFamily: "Nunito",
-                                color: ColorPalette.white,
+                                color: ColorPalette.pacificBlue,
                               ),
                             ),
                           ),
@@ -143,10 +147,10 @@ class Home extends StatelessWidget {
             );
           },
           splashColor: ColorPalette.bondyBlue,
-          backgroundColor: ColorPalette.pacificBlue,
+          backgroundColor: ColorPalette.brown,
           child: const Icon(
             Icons.add,
-            color: ColorPalette.white,
+            color: ColorPalette.pacificBlue,
           ),
         ),
       ),
@@ -155,7 +159,7 @@ class Home extends StatelessWidget {
           content: Text('Tap back again to leave'),
         ),
         child: Container(
-          color: ColorPalette.pacificBlue,
+          color: ColorPalette.brown,
           child: SafeArea(
             child: Container(
               color: ColorPalette.aquaHaze,
@@ -172,7 +176,7 @@ class Home extends StatelessWidget {
                     width: double.infinity,
                     height: 90,
                     decoration: const BoxDecoration(
-                      color: ColorPalette.pacificBlue,
+                      color: ColorPalette.brown,
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(16),
                         bottomRight: Radius.circular(16),
@@ -217,6 +221,10 @@ class Home extends StatelessWidget {
                                   barrierDismissible: false, // user must tap button!
                                   builder: (BuildContext context) {
                                     return AlertDialog(
+
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
                                       title: Text('Sign Out'),
                                       backgroundColor: Colors.white,
                                       content: SingleChildScrollView(
@@ -275,11 +283,11 @@ class Home extends StatelessWidget {
                               ],
                             ),
                             const Text(
-                              "Product Groups",
+                              "Welcome",
                               style: TextStyle(
-                                color: ColorPalette.timberGreen,
+                                color: ColorPalette.pacificBlue,
                                 fontSize: 20,
-                                fontFamily: "Nunito",
+                                fontFamily: "Open Sans",
                               ),
                             ),
                             const SizedBox(height: 20),

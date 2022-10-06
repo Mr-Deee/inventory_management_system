@@ -36,15 +36,15 @@ class ProductDetailsPage extends StatelessWidget {
             Navigator.of(context).pop();
           },
           splashColor: ColorPalette.bondyBlue,
-          backgroundColor: ColorPalette.pacificBlue,
+          backgroundColor: ColorPalette.brown,
           child: const Icon(
             Icons.done,
-            color: ColorPalette.white,
+            color: ColorPalette.pacificBlue,
           ),
         ),
       ),
       body: Container(
-        color: ColorPalette.pacificBlue,
+        color: ColorPalette.brown,
         child: SafeArea(
           child: Container(
             color: ColorPalette.aquaHaze,
@@ -61,7 +61,7 @@ class ProductDetailsPage extends StatelessWidget {
                   width: double.infinity,
                   height: 90,
                   decoration: const BoxDecoration(
-                    color: ColorPalette.pacificBlue,
+                    color: ColorPalette.brown,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(16),
                       bottomRight: Radius.circular(16),
@@ -139,7 +139,7 @@ class ProductDetailsPage extends StatelessWidget {
                                   ),
                                   margin: const EdgeInsets.only(top: 75),
                                   decoration: const BoxDecoration(
-                                    color: ColorPalette.white,
+                                    color: ColorPalette.brown,
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(16),
                                       topRight: Radius.circular(16),
@@ -166,7 +166,7 @@ class ProductDetailsPage extends StatelessWidget {
                                         ),
                                         Container(
                                           decoration: BoxDecoration(
-                                            color: ColorPalette.white,
+                                            color: ColorPalette.brown,
                                             borderRadius:
                                                 BorderRadius.circular(12),
                                             boxShadow: [
@@ -217,7 +217,7 @@ class ProductDetailsPage extends StatelessWidget {
                                             Expanded(
                                               child: Container(
                                                 decoration: BoxDecoration(
-                                                  color: ColorPalette.white,
+                                                  color: ColorPalette.brown,
                                                   borderRadius:
                                                       BorderRadius.circular(12),
                                                   boxShadow: [
@@ -277,7 +277,7 @@ class ProductDetailsPage extends StatelessWidget {
                                             Expanded(
                                               child: Container(
                                                 decoration: BoxDecoration(
-                                                  color: ColorPalette.white,
+                                                  color: ColorPalette.brown,
                                                   borderRadius:
                                                       BorderRadius.circular(12),
                                                   boxShadow: [
@@ -339,7 +339,7 @@ class ProductDetailsPage extends StatelessWidget {
                                         ),
                                         Container(
                                           decoration: BoxDecoration(
-                                            color: ColorPalette.white,
+                                            color: ColorPalette.brown,
                                             borderRadius:
                                                 BorderRadius.circular(12),
                                             boxShadow: [
@@ -387,7 +387,7 @@ class ProductDetailsPage extends StatelessWidget {
                                         ),
                                         Container(
                                           decoration: BoxDecoration(
-                                            color: ColorPalette.white,
+                                            color: ColorPalette.brown,
                                             borderRadius:
                                                 BorderRadius.circular(12),
                                             boxShadow: [
@@ -432,21 +432,21 @@ class ProductDetailsPage extends StatelessWidget {
                                           ),
                                         ),
                                         const SizedBox(height: 20),
-                                        const Padding(
-                                          padding: EdgeInsets.only(
-                                            left: 8,
-                                            bottom: 5,
-                                          ),
-                                          child: Text(
-                                            "Location",
-                                            style: TextStyle(
-                                              fontFamily: "Nunito",
-                                              fontSize: 14,
-                                              color: ColorPalette.nileBlue,
-                                            ),
-                                          ),
-                                        ),
-                                        LocationDD(product: product),
+                                        // const Padding(
+                                        //   padding: EdgeInsets.only(
+                                        //     left: 8,
+                                        //     bottom: 5,
+                                        //   ),
+                                        //   child: Text(
+                                        //     "Location",
+                                        //     style: TextStyle(
+                                        //       fontFamily: "Nunito",
+                                        //       fontSize: 14,
+                                        //       color: ColorPalette.nileBlue,
+                                        //     ),
+                                        //   ),
+                                        // ),
+                                        // LocationDD(product: product),
                                       ],
                                     ),
                                   ),

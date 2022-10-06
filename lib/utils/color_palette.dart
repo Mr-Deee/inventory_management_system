@@ -9,4 +9,5 @@ mixin ColorPalette {
   static const Color nileBlue =  Color(0xff1a535c);
   static const Color bondyBlue =  Color(0xff0096a5);
   static const Color geyser =  Color(0xffd5e2e3);
+  static const Color brown =  Color(0xffD8A96E);
 }

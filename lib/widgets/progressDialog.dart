@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventory_management_system/utils/color_palette.dart';
 
 class ProgressDialog extends StatelessWidget {
 
@@ -7,12 +8,12 @@ class ProgressDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: Colors.white,
+      backgroundColor: ColorPalette.brown,
       child: Container(
         margin: EdgeInsets.all(15.0),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color:  ColorPalette.brown,
           borderRadius: BorderRadius.circular(6.0)
         ),
     child: Padding(
@@ -20,11 +21,11 @@ class ProgressDialog extends StatelessWidget {
       child: Row(
           children: [
             SizedBox(width: 6.0,),
-            CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.black),),
+            CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(ColorPalette.bondyBlue),),
             SizedBox(width: 26.0,),
             Text(
               message,
-              style: TextStyle(color: Colors.black, fontSize: 10.0),
+              style: TextStyle(color: ColorPalette.bondyBlue, fontSize: 10.0),
 
             ),
 
