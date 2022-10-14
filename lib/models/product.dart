@@ -3,7 +3,7 @@ class Product {
         this.name,
         this.cost,
         this.group,
-        this.location,
+        this.CementType,
         this.company,
         this.quantity,
         this.image,
@@ -13,7 +13,7 @@ class Product {
     String? name;
     double? cost;
     String? group;
-    String? location;
+    String? CementType;
     String? company;
     int? quantity;
     String? image;
@@ -23,7 +23,7 @@ class Product {
         name: json["name"] as String?,
         cost: json["cost"] as double?,
         group: json["group"] as String?,
-        location: json["location"] as String?,
+        CementType: json["CementType"] as String?,
         company: json["company"] as String?,
         quantity: json["quantity"] as int?,
        // image: json["image"] as String?,
@@ -34,7 +34,7 @@ class Product {
         "name": name,
         "cost": cost,
         "group": group,
-        "location": location,
+        "CementType": CementType,
         "company": company,
         "quantity": quantity,
        // "image": image,

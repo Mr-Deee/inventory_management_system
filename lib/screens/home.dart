@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../functions/confirm_dialog.dart';
 import '../functions/toast.dart';
 import '../utils/color_palette.dart';
+import '../widgets/Salescard.dart';
 import '../widgets/product_group_card.dart';
 import 'global_search_page.dart';
 import 'login.dart';
@@ -291,51 +292,238 @@ class Home extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 20),
-                            Expanded(
-                              child: StreamBuilder(
-                                stream:
-                                    _firestore.collection("utils").snapshots(),
-                                builder: (
-                                  BuildContext context,
-                                  AsyncSnapshot<
-                                          QuerySnapshot<Map<String, dynamic>>>
-                                      snapshot,
-                                ) {
-                                  if (snapshot.hasData) {
-                                    final List<dynamic> _productGroups =
-                                        snapshot.data!.docs[0].data()['list']
-                                            as List<dynamic>;
-                                    _productGroups.sort();
-                                    return GridView.builder(
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        childAspectRatio: 2,
-                                        crossAxisSpacing: 20,
-                                        mainAxisSpacing: 20,
-                                      ),
-                                      itemCount: _productGroups.length,
-                                      itemBuilder: (context, index) {
-                                        return ProductGroupCard(
-                                          name: _productGroups[index] as String,
-                                          key: UniqueKey(),
-                                        );
+
+
+
+                            // Expanded(
+                            //   child: StreamBuilder(
+                            //     stream:
+                            //         _firestore.collection("utils").snapshots(),
+                            //     builder: (
+                            //       BuildContext context,
+                            //       AsyncSnapshot<
+                            //               QuerySnapshot<Map<String, dynamic>>>
+                            //           snapshot,
+                            //     ) {
+                            //       if (snapshot.hasData) {
+                            //         final List<dynamic> _productGroups =
+                            //             snapshot.data!.docs[0].data()['list']
+                            //                 as List<dynamic>;
+                            //         _productGroups.sort();
+                            //         return GridView.builder(
+                            //           gridDelegate:
+                            //               const SliverGridDelegateWithFixedCrossAxisCount(
+                            //             crossAxisCount: 1,
+                            //             childAspectRatio: 2,
+                            //             crossAxisSpacing: 20,
+                            //             mainAxisSpacing: 20,
+                            //           ),
+                            //           itemCount: _productGroups.length,
+                            //           itemBuilder: (context, index) {
+                            //             return ProductGroupCard(
+                            //               name: _productGroups[index] as String,
+                            //               key: UniqueKey(),
+                            //             );
+                            //           },
+                            //         );
+                            //       } else {
+                            //         return const Center(
+                            //           child: SizedBox(
+                            //             height: 40,
+                            //             width: 40,
+                            //             child: CircularProgressIndicator(
+                            //               color: ColorPalette.pacificBlue,
+                            //             ),
+                            //           ),
+                            //         );
+                            //       }
+                            //     },
+                            //   ),
+                            // ),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                                child: Row(
+                                children: [
+
+                                     SizedBox(
+                                          height: 200,
+                                          width: 200,
+
+
+                                          child: StreamBuilder(
+                                            stream:
+                                            _firestore.collection("utils").snapshots(),
+                                            builder: (
+                                                BuildContext context,
+                                                AsyncSnapshot<
+                                                    QuerySnapshot<Map<String, dynamic>>>
+                                                snapshot,
+                                                ) {
+                                              if (snapshot.hasData) {
+                                                final List<dynamic> _productGroups =
+                                                snapshot.data!.docs[0].data()['list'] as List<dynamic>;
+                                                _productGroups.sort();
+                                                return GridView.builder(
+                                                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                    crossAxisCount: 1,
+                                                    childAspectRatio: 2,
+                                                    crossAxisSpacing: 0,
+                                                    mainAxisSpacing: 0,
+                                                  ),
+                                                  itemCount: _productGroups.length,
+                                                  itemBuilder: (context, index) {
+                                                    return ProductGroupCard(
+                                                      name: _productGroups[index] as String,
+                                                      key: UniqueKey(),
+                                                    );
+                                                  },
+                                                );
+                                              } else {
+                                                return const Center(
+                                                  child: SizedBox(
+                                                    height: 40,
+                                                    width: 40,
+                                                    child: CircularProgressIndicator(
+                                                      color: ColorPalette.pacificBlue,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                          ),
+
+
+
+                                     ),
+                                  SizedBox(
+                                    height: 200,
+                                    width: 200,
+
+
+                                    child: StreamBuilder(
+                                      stream:
+                                      _firestore.collection("Sales").snapshots(),
+                                      builder: (
+                                          BuildContext context,
+                                          AsyncSnapshot<
+                                              QuerySnapshot<Map<String, dynamic>>>
+                                          snapshot,
+                                          ) {
+                                        if (snapshot.hasData) {
+                                          final  _productGroups =
+                                          snapshot.data!.docs[0].data();
+                                          _productGroups;
+                                          return GridView.builder(
+                                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 1,
+                                              childAspectRatio: 2,
+                                              crossAxisSpacing: 0,
+                                              mainAxisSpacing: 0,
+                                            ),
+                                            itemCount: _productGroups.length,
+                                            itemBuilder: (context, index) {
+                                              return SalesGroupCard(
+                                                sales:"SALES",
+
+                                                //"_productGroups[index] as String",
+                                                key: UniqueKey(),
+                                              );
+                                            },
+                                          );
+                                        } else {
+                                          return const Center(
+                                            child: SizedBox(
+                                              height: 40,
+                                              width: 40,
+                                              child: CircularProgressIndicator(
+                                                color: ColorPalette.pacificBlue,
+                                              ),
+                                            ),
+                                          );
+                                        }
                                       },
-                                    );
-                                  } else {
-                                    return const Center(
-                                      child: SizedBox(
-                                        height: 40,
-                                        width: 40,
-                                        child: CircularProgressIndicator(
-                                          color: ColorPalette.pacificBlue,
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                },
+                                    ),
+
+
+
+                                  ),
+
+                                      // SizedBox(
+                                      //   height: 100,
+                                      //   width: 200,
+                                      //   child: Card(
+                                      //       color: ColorPalette.brown,
+                                      //       elevation:5,
+                                      //      // margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
+                                      //       shape: RoundedRectangleBorder(
+                                      //         borderRadius: BorderRadius.circular(30.0),
+                                      //       ),
+                                      //
+                                      //       child: Column(
+                                      //         children: [
+                                      //           Padding(
+                                      //             padding: const EdgeInsets.only(top:30.0),
+                                      //             child: Text("Sales",style: TextStyle(fontSize: 30),),
+                                      //           )
+                                      //         ],
+                                      //       )
+                                      //   ),
+                                      // ),
+
+
+
+                                ],
                               ),
-                            )
+                            ),
+
+
+
+                            //
+                            // Expanded(
+                            //   child: StreamBuilder(
+                            //     stream:
+                            //     _firestore.collection("Sales").snapshots(),
+                            //     builder: (
+                            //         BuildContext context,
+                            //         AsyncSnapshot<
+                            //             QuerySnapshot<Map<String, dynamic>>>
+                            //         snapshot,
+                            //         ) {
+                            //       if (snapshot.hasData) {
+                            //         final List<dynamic> _productGroups =
+                            //       //  snapshot.data!.docs[0].data()['list']
+                            //         //as List<dynamic>;
+                            //         //_productGroups.sort();
+                            //         return GridView.builder(
+                            //           gridDelegate:
+                            //           const SliverGridDelegateWithFixedCrossAxisCount(
+                            //             crossAxisCount: 1,
+                            //             childAspectRatio: 2,
+                            //             crossAxisSpacing: 20,
+                            //             mainAxisSpacing: 20,
+                            //           ),
+                            //           itemCount: _productGroups.length,
+                            //           itemBuilder: (context, index) {
+                            //             return ProductGroupCard(
+                            //               name: _productGroups[index] as String,
+                            //               key: UniqueKey(),
+                            //             );
+                            //           },
+                            //         );
+                            //       } else {
+                            //         return const Center(
+                            //           child: SizedBox(
+                            //             height: 40,
+                            //             width: 40,
+                            //             child: CircularProgressIndicator(
+                            //               color: ColorPalette.pacificBlue,
+                            //             ),
+                            //           ),
+                            //         );
+                            //       }
+                            //     },
+                            //   ),
+                            // )
                           ],
                         ),
                       ),

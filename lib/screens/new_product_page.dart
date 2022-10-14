@@ -364,6 +364,8 @@ class NewProductPage extends StatelessWidget {
                                                 ColorPalette.timberGreen,
                                           ),
                                         ),
+
+
                                         const SizedBox(
                                           height: 20,
                                         ),
@@ -414,21 +416,21 @@ class NewProductPage extends StatelessWidget {
                                           ),
                                         ),
                                         const SizedBox(height: 20),
-                                        // const Padding(
-                                        //   padding: EdgeInsets.only(
-                                        //     left: 8,
-                                        //     bottom: 5,
-                                        //   ),
-                                        //   child: Text(
-                                        //     "Location",
-                                        //     style: TextStyle(
-                                        //       fontFamily: "Nunito",
-                                        //       fontSize: 14,
-                                        //       color: ColorPalette.nileBlue,
-                                        //     ),
-                                        //   ),
-                                        // ),
-                                        // LocationDD(product: newProduct),
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                            left: 8,
+                                            bottom: 5,
+                                          ),
+                                          child: Text(
+                                            "Cement Type",
+                                            style: TextStyle(
+                                              fontFamily: "Nunito",
+                                              fontSize: 14,
+                                              color: ColorPalette.nileBlue,
+                                            ),
+                                          ),
+                                        ),
+                                        CementTypeDD(product: newProduct),
                                       ],
                                     ),
                                   ),

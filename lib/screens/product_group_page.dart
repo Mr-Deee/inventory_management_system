@@ -10,7 +10,8 @@ import 'new_product_page.dart';
 
 class ProductGroupPage extends StatelessWidget {
   final String? name;
-  ProductGroupPage({Key? key, this.name}) : super(key: key);
+  final String? CementType;
+  ProductGroupPage({Key? key, this.name, this.CementType}) : super(key: key);
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -152,9 +153,9 @@ class ProductGroupPage extends StatelessWidget {
                             child: StreamBuilder(
                               stream: _firestore
                                   .collection("products")
-                                  .where("group",isEqualTo: name)
+                                  .where("group",isEqualTo: CementType)
 
-                                  .orderBy('name')
+                                  .orderBy('CementType')
                                   .snapshots(),
                               builder: (
                                 BuildContext context,

@@ -3,24 +3,27 @@ import 'package:flutter/material.dart';
 import '../models/product.dart';
 import '../utils/color_palette.dart';
 
-class LocationDD extends StatefulWidget {
+class CementTypeDD extends StatefulWidget {
   final Product? product;
 
-  const LocationDD({Key? key, this.product}) : super(key: key);
+  const CementTypeDD ({Key? key, this.product}) : super(key: key);
   @override
-  _LocationDDState createState() => _LocationDDState();
+  _CementTypeDDState createState() => _CementTypeDDState();
 }
 
-class _LocationDDState extends State<LocationDD> {
-  final List<String> locations = [
-    "Godown 1, 1st Floor",
-    "Godown 1, 2nd Floor",
-    "Godown 2, 1st Floor",
-    "Godown 2, 2nd Floor",
+class _CementTypeDDState extends State<CementTypeDD > {
+  final List<String> CementType = [
+    "Ordinary Portland Cement",
+    "Quick Setting Cement",
+    "Portland Pozzsana Cement",
+    "Low  heat Cement",
+    "White Cement"
+    "Expansive heat \nCement",
+
   ];
   @override
   Widget build(BuildContext context) {
-    widget.product!.location ??= locations[0];
+    widget.product!.CementType ??= CementType[0];
     return Container(
       decoration: BoxDecoration(
         color: ColorPalette.white,
@@ -34,28 +37,31 @@ class _LocationDDState extends State<LocationDD> {
         ],
       ),
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 2.5),
-      child: DropdownButton(
-        iconSize: 30,
-        underline: const SizedBox(),
-        value: widget.product!.location,
-        onChanged: (dynamic newValue) {
-          setState(() {
-            widget.product!.location = newValue as String?;
-          });
-        },
-        items: locations.map((process) {
-          return DropdownMenuItem(
-            value: process,
-            child: Text(
-              process,
-              style: TextStyle(
-                fontFamily: "Nunito",
-                fontSize: 16,
-                color: ColorPalette.nileBlue.withOpacity(0.58),
+      child: SingleChildScrollView(
+
+        child: DropdownButton(
+          iconSize: 30,
+          underline: const SizedBox(),
+          value: widget.product!.CementType,
+          onChanged: (dynamic newValue) {
+            setState(() {
+              widget.product!.CementType = newValue as String?;
+            });
+          },
+          items: CementType.map((process) {
+            return DropdownMenuItem(
+              value: process,
+              child: Text(
+                process,
+                style: TextStyle(
+                  fontFamily: "Nunito",
+                  fontSize: 16,
+                  color: ColorPalette.nileBlue.withOpacity(0.58),
+                ),
               ),
-            ),
-          );
-        }).toList(),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

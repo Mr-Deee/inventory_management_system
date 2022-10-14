@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../screens/product_group_page.dart';
 import '../utils/color_palette.dart';
 
-class ProductGroupCard extends StatelessWidget {
-  final String? name;
+class SalesGroupCard extends StatelessWidget {
+  final String? sales;
   final String? CementType;
 
-  const ProductGroupCard({Key? key, this.name, this.CementType}) : super(key: key);
+  const SalesGroupCard({Key? key, this.sales, this.CementType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ProductGroupCard extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) {
                 return ProductGroupPage(
-                  name: name,
+                  name: sales,
                 );
               },
             ),
@@ -41,7 +41,7 @@ class ProductGroupCard extends StatelessWidget {
             ],
           ),
           child: Text(
-            name!,
+            sales!,
             style: const TextStyle(
               fontFamily: "Nunito",
               fontSize: 20,

@@ -73,34 +73,37 @@ class ProductCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    product!.name ?? '',
-                    maxLines: 1,
+                    product!.CementType ?? '',
+                    maxLines: 3,
                     style: const TextStyle(
                       fontFamily: "Nunito",
-                      fontSize: 20,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
                       color: ColorPalette.timberGreen,
                     ),
                   ),
                   const SizedBox(
                     height: 5,
                   ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.location_on,
-                        size: 14,
-                        color: ColorPalette.timberGreen.withOpacity(0.44),
-                      ),
-                      Text(
-                        product!.location ?? '-',
-                        maxLines: 1,
-                        style: const TextStyle(
-                          fontFamily: "Nunito",
-                          fontSize: 12,
-                          color: ColorPalette.timberGreen,
+                  SingleChildScrollView(
+                    child: Row(
+                      children: [
+                        // Icon(
+                        //   Icons.location_on,
+                        //   size: 14,
+                        //   color: ColorPalette.timberGreen.withOpacity(0.44),
+                        // ),
+                        Text(
+                          product!.name ?? '-',
+                          maxLines: 1,
+                          style: const TextStyle(
+                            fontFamily: "Nunito",
+                            fontSize: 12,
+                            color: ColorPalette.timberGreen,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 5,
