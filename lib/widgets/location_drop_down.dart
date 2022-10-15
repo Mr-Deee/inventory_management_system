@@ -44,12 +44,14 @@ class _CementTypeDDState extends State<CementTypeDD > {
           underline: const SizedBox(),
           value: widget.product!.CementType,
           onChanged: (dynamic newValue) {
+
             setState(() {
               widget.product!.CementType = newValue as String?;
             });
           },
           items: CementType.map((process) {
             return DropdownMenuItem(
+
               value: process,
               child: Text(
                 process,

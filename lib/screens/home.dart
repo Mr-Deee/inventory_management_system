@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:inventory_management_system/widgets/Sales_group%20_card.dart';
 
 import '../functions/confirm_dialog.dart';
 import '../functions/toast.dart';
@@ -447,7 +448,36 @@ class Home extends StatelessWidget {
 
 
                                   ),
-
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(12),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 5,
+                                          blurRadius: 7,
+                                          offset: Offset(0, 3),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          child: Icon(Icons.person, size: 24, color:Colors.blueAccent),
+                                          padding: const EdgeInsets.all(12),
+                                        ),
+                                        Container(
+                                          decoration: const BoxDecoration(
+                                              color: Colors.blueAccent,
+                                              borderRadius: BorderRadius.only(bottomRight: Radius.circular(12), bottomLeft: Radius.circular(12))
+                                          ),
+                                          child: Text("Student"),
+                                          padding: const EdgeInsets.all(12),
+                                        )
+                                      ],
+                                    ),
+                                  )
                                       // SizedBox(
                                       //   height: 100,
                                       //   width: 200,
