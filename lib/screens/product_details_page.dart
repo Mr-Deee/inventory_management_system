@@ -10,6 +10,7 @@ import '../widgets/location_drop_down.dart';
 class ProductDetailsPage extends StatelessWidget {
   final Product? product;
   final String? docID;
+
   ProductDetailsPage({Key? key, this.product, this.docID}) : super(key: key);
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

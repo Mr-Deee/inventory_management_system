@@ -21,6 +21,7 @@ class salesCard extends StatelessWidget {
             builder: (context) => SalesDetailsPage(
               docID: docID,
               product: product,
+
             ),
           ),
         );

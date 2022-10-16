@@ -9,7 +9,7 @@ import '../widgets/location_drop_down.dart';
 
 class SalesDetailsPage extends StatefulWidget {
 
-  const SalesDetailsPage({Key? key, this.product,this.docID,this.productimage,this.productprice})
+  const SalesDetailsPage({Key? key, this.product,this.docID,this.productimage,this.productprice, this.productp})
       : super(key: key);
   final productprice;
   final productimage;
@@ -17,29 +17,66 @@ final Product? product;
   final String? docID;
 
 
-
+  final productp ;
 
 
 
   @override
-  State<SalesDetailsPage> createState() => _SalesDetailsPageState(product,docID);
+  State<SalesDetailsPage> createState() => _SalesDetailsPageState(product,docID,productprice, productimage,productp);
 }
 class _SalesDetailsPageState extends State<SalesDetailsPage> {
 
-
+  int _n = 0;
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-final Product? product;
+  final Product? product;
   final String? docID;
+  final prodprice;
+  double? finalprice;
+  final productimage;
+  int counter = 1;
+  final productp;
 
-    bool isSaving = false;
-    _SalesDetailsPageState(this.product,this.docID);
 
-    @override
+  _SalesDetailsPageState(this.product, this.docID, this.prodprice,
+      this.productimage, this.productp);
+
+
+  void increment() {
+    setState(() {
+      counter++;
+      finalprice = double.parse(productp) * counter;
+    });
+  }
+
+  void decrement() {
+    setState(() {
+      counter--;
+      finalprice = double.parse(productp) * counter;
+    });
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    // final productp =prodprice.replaceAll(new RegExp(r'\$'), '');
+
+  }
+
+  @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    Size size = MediaQuery.of(context).size;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    Size size = MediaQuery
+        .of(context)
+        .size;
 
     return Scaffold(
       floatingActionButton: Padding(
@@ -173,7 +210,7 @@ final Product? product;
                                   child: SingleChildScrollView(
                                     child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.only(
@@ -193,7 +230,7 @@ final Product? product;
                                           decoration: BoxDecoration(
                                             color: ColorPalette.brown,
                                             borderRadius:
-                                                BorderRadius.circular(12),
+                                            BorderRadius.circular(12),
                                             boxShadow: [
                                               BoxShadow(
                                                 offset: const Offset(0, 3),
@@ -211,7 +248,7 @@ final Product? product;
                                               product!.name = value;
                                             },
                                             textInputAction:
-                                                TextInputAction.next,
+                                            TextInputAction.next,
                                             key: UniqueKey(),
                                             keyboardType: TextInputType.text,
                                             style: const TextStyle(
@@ -232,7 +269,7 @@ final Product? product;
                                               ),
                                             ),
                                             cursorColor:
-                                                ColorPalette.timberGreen,
+                                            ColorPalette.timberGreen,
                                           ),
                                         ),
                                         const SizedBox(
@@ -245,11 +282,11 @@ final Product? product;
                                                 decoration: BoxDecoration(
                                                   color: ColorPalette.brown,
                                                   borderRadius:
-                                                      BorderRadius.circular(12),
+                                                  BorderRadius.circular(12),
                                                   boxShadow: [
                                                     BoxShadow(
                                                       offset:
-                                                          const Offset(0, 3),
+                                                      const Offset(0, 3),
                                                       blurRadius: 6,
                                                       color: ColorPalette
                                                           .nileBlue
@@ -261,31 +298,31 @@ final Product? product;
                                                 child: TextFormField(
                                                   readOnly: true,
                                                   initialValue:
-                                                      product!.cost == null
-                                                          ? ''
-                                                          : product!.cost
-                                                              .toString(),
+                                                  product!.cost == null
+                                                      ? ''
+                                                      : product!.cost
+                                                      .toString(),
                                                   onChanged: (value) {
                                                     product!.cost =
                                                         double.parse(value);
                                                   },
                                                   textInputAction:
-                                                      TextInputAction.next,
+                                                  TextInputAction.next,
                                                   key: UniqueKey(),
                                                   keyboardType:
-                                                      TextInputType.number,
+                                                  TextInputType.number,
                                                   style: const TextStyle(
                                                     fontFamily: "Nunito",
                                                     fontSize: 16,
                                                     color:
-                                                        ColorPalette.nileBlue,
+                                                    ColorPalette.nileBlue,
                                                   ),
                                                   decoration: InputDecoration(
                                                     border: InputBorder.none,
                                                     hintText: "Cost",
                                                     filled: true,
                                                     fillColor:
-                                                        Colors.transparent,
+                                                    Colors.transparent,
                                                     hintStyle: TextStyle(
                                                       fontFamily: "Nunito",
                                                       fontSize: 16,
@@ -295,7 +332,7 @@ final Product? product;
                                                     ),
                                                   ),
                                                   cursorColor:
-                                                      ColorPalette.timberGreen,
+                                                  ColorPalette.timberGreen,
                                                 ),
                                               ),
                                             ),
@@ -307,11 +344,11 @@ final Product? product;
                                                 decoration: BoxDecoration(
                                                   color: ColorPalette.brown,
                                                   borderRadius:
-                                                      BorderRadius.circular(12),
+                                                  BorderRadius.circular(12),
                                                   boxShadow: [
                                                     BoxShadow(
                                                       offset:
-                                                          const Offset(0, 3),
+                                                      const Offset(0, 3),
                                                       blurRadius: 6,
                                                       color: ColorPalette
                                                           .nileBlue
@@ -323,31 +360,31 @@ final Product? product;
                                                 child: TextFormField(
                                                   readOnly: true,
                                                   initialValue:
-                                                      product!.quantity == null
-                                                          ? ''
-                                                          : product!.quantity
-                                                              .toString(),
+                                                  product!.quantity == null
+                                                      ? ''
+                                                      : product!.quantity
+                                                      .toString(),
                                                   onChanged: (value) {
                                                     product!.quantity =
                                                         int.parse(value);
                                                   },
                                                   textInputAction:
-                                                      TextInputAction.next,
+                                                  TextInputAction.next,
                                                   key: UniqueKey(),
                                                   keyboardType:
-                                                      TextInputType.number,
+                                                  TextInputType.number,
                                                   style: const TextStyle(
                                                     fontFamily: "Nunito",
                                                     fontSize: 16,
                                                     color:
-                                                        ColorPalette.nileBlue,
+                                                    ColorPalette.nileBlue,
                                                   ),
                                                   decoration: InputDecoration(
                                                     border: InputBorder.none,
                                                     hintText: "Quantity",
                                                     filled: true,
                                                     fillColor:
-                                                        Colors.transparent,
+                                                    Colors.transparent,
                                                     hintStyle: TextStyle(
                                                       fontFamily: "Nunito",
                                                       fontSize: 16,
@@ -357,7 +394,7 @@ final Product? product;
                                                     ),
                                                   ),
                                                   cursorColor:
-                                                      ColorPalette.timberGreen,
+                                                  ColorPalette.timberGreen,
                                                 ),
                                               ),
                                             ),
@@ -370,7 +407,7 @@ final Product? product;
                                           decoration: BoxDecoration(
                                             color: ColorPalette.brown,
                                             borderRadius:
-                                                BorderRadius.circular(12),
+                                            BorderRadius.circular(12),
                                             boxShadow: [
                                               BoxShadow(
                                                 offset: const Offset(0, 3),
@@ -384,12 +421,12 @@ final Product? product;
                                           child: TextFormField(
                                             readOnly: true,
                                             initialValue:
-                                                product!.company ?? '',
+                                            product!.company ?? '',
                                             onChanged: (value) {
                                               product!.company = value;
                                             },
                                             textInputAction:
-                                                TextInputAction.next,
+                                            TextInputAction.next,
                                             key: UniqueKey(),
                                             keyboardType: TextInputType.text,
                                             style: const TextStyle(
@@ -410,7 +447,7 @@ final Product? product;
                                               ),
                                             ),
                                             cursorColor:
-                                                ColorPalette.timberGreen,
+                                            ColorPalette.timberGreen,
                                           ),
                                         ),
                                         const SizedBox(
@@ -420,7 +457,7 @@ final Product? product;
                                           decoration: BoxDecoration(
                                             color: ColorPalette.brown,
                                             borderRadius:
-                                                BorderRadius.circular(12),
+                                            BorderRadius.circular(12),
                                             boxShadow: [
                                               BoxShadow(
                                                 offset: const Offset(0, 3),
@@ -434,12 +471,12 @@ final Product? product;
                                           child: TextFormField(
                                             readOnly: true,
                                             initialValue:
-                                                product!.description ?? '',
+                                            product!.description ?? '',
                                             onChanged: (value) {
                                               product!.description = value;
                                             },
                                             textInputAction:
-                                                TextInputAction.next,
+                                            TextInputAction.next,
                                             key: UniqueKey(),
                                             keyboardType: TextInputType.text,
                                             style: const TextStyle(
@@ -460,78 +497,77 @@ final Product? product;
                                               ),
                                             ),
                                             cursorColor:
-                                                ColorPalette.timberGreen,
+                                            ColorPalette.timberGreen,
                                           ),
                                         ),
                                         const SizedBox(height: 20),
                                         Container(
                                           decoration: BoxDecoration(
-                                              borderRadius: const BorderRadius.all(Radius.circular(20),
-                                                ),
+                                              borderRadius: const BorderRadius
+                                                  .all(Radius.circular(20),
+                                              ),
 
                                               border: Border.all(
                                                   width: 4,
                                                   color: ColorPalette.white),
                                               boxShadow: [
-                                              BoxShadow(
-                                              spreadRadius: 2,
-                                              blurRadius: 10,
-                                              color: Colors.black.withOpacity(0.1),
-                                              offset: const Offset(0, 10))]
+                                                BoxShadow(
+                                                    spreadRadius: 2,
+                                                    blurRadius: 10,
+                                                    color: Colors.black
+                                                        .withOpacity(0.1),
+                                                    offset: const Offset(0, 10))
+                                              ]
                                           ),
 
                                           height: 167.0,
                                           width: width,
 
 
-
-                                          child: Column(
+                                          child: Row(
                                             children: [
-                                              Text("ASFSFSF"),
+                                              Text(finalprice.toString()),
 
-                                            Row(
-                                              children: [
-                                                Container(
-                                                padding: EdgeInsets.all(3),
-                                        decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(5),
-                                                color: Theme.of(context).accentColor),
-                                        child: Row(
-                                          children: [
-                                                InkWell(
-                                                    onTap: () {},
-                                                    child: Icon(
-                                                      Icons.remove,
-                                                      color: Colors.white,
-                                                      size: 16,
-                                                    )),
-                                                Container(
-                                                  margin: EdgeInsets.symmetric(horizontal: 3),
-                                                  padding:
-                                                  EdgeInsets.symmetric(horizontal: 3, vertical: 2),
-                                                  decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(3),
-                                                      color: Colors.white),
-                                                  child: Text(
-                                                    '3',
-                                                    style: TextStyle(color: Colors.black, fontSize: 16),
+                                              Row(
+                                                children: [
+                                                  new Container(
+                                                    child: new Center(
+                                                      child: new Row(
+                                                        mainAxisAlignment: MainAxisAlignment
+                                                            .spaceEvenly,
+                                                        children: <Widget>[
+                                                          new FloatingActionButton(
+                                                            onPressed: add,
+                                                            child: new Icon(
+                                                              Icons.add,
+                                                              color: Colors
+                                                                  .black,),
+                                                            backgroundColor: Colors
+                                                                .white,),
+
+                                                          new Text('$_n',
+                                                              style: new TextStyle(
+                                                                  fontSize: 60.0)),
+
+                                                          new FloatingActionButton(
+                                                            onPressed: minus,
+                                                            child: new Icon(
+                                                                const IconData(
+                                                                    0xe15b,
+                                                                    fontFamily: 'MaterialIcons'),
+                                                                color: Colors
+                                                                    .black),
+                                                            backgroundColor: Colors
+                                                                .white,),
+                                                        ],
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                                InkWell(
-                                                    onTap: () {},
-                                                    child: Icon(
-                                                      Icons.add,
-                                                      color: Colors.white,
-                                                      size: 16,
-                                                    )),
-                                          ],
-                                        ),),
-                                              ],
-                                            )
+                                                ],
+                                              )
                                             ],
                                           ),
                                         )
-
 
 
                                         // const Padding(
@@ -568,17 +604,17 @@ final Product? product;
                                             color: ColorPalette.timberGreen
                                                 .withOpacity(0.1),
                                             child:
-                                                //
-                                                // (product!.image == null)
-                                                //     ? Center(
-                                                //   child: Icon(
-                                                //     Icons.image,
-                                                //     color: ColorPalette
-                                                //         .nileBlue
-                                                //         .withOpacity(0.5),
-                                                //   ),
-                                                // )
-                                                Padding(
+                                            //
+                                            // (product!.image == null)
+                                            //     ? Center(
+                                            //   child: Icon(
+                                            //     Icons.image,
+                                            //     color: ColorPalette
+                                            //         .nileBlue
+                                            //         .withOpacity(0.5),
+                                            //   ),
+                                            // )
+                                            Padding(
                                               padding: const EdgeInsets.only(
                                                   top: 0.0),
                                               child: Image.asset(
@@ -605,6 +641,18 @@ final Product? product;
       ),
     );
   }
+  void minus() {
+    setState(() {
+      if (_n != 0)
+        _n--;
+    });
+  }
+  void add() {
+    setState(() {
+     final  String? newproductprice =product!.cost.toString();
+      _n++;
+finalprice=double.parse(newproductprice!)*_n;
 
-
+    });
+  }
 }
