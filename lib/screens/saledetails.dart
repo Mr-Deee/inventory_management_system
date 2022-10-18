@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../functions/toast.dart';
@@ -33,7 +34,7 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
 
   final String? docID;
   final prodprice;
-  double? finalprice=0.0;
+  double? finalprice = 0.0;
   final productimage;
   int counter = 1;
   final productp;
@@ -87,17 +88,20 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
         ),
         child: FloatingActionButton(
           onPressed: () {
-            _firestore
-                .collection("Sales")
-                .doc(docID)
-                .update(product!.toMap())
-                .then((value) {
-              showTextToast('Updated Sucessfully!');
-            }).catchError((e) {
-              showTextToast('Failed!');
-            });
-            Navigator.of(context).pop();
+
+            UploadSales(context);
           },
+          //   _firestore
+          //       .collection("Sales")
+          //       .doc(docID)
+          //       .update(product!.toMap())
+          //       .then((value) {
+          //     showTextToast('Updated Sucessfully!');
+          //   }).catchError((e) {
+          //     showTextToast('Failed!');
+          //   });
+          //   Navigator.of(context).pop();
+          // },
           splashColor: ColorPalette.bondyBlue,
           backgroundColor: ColorPalette.brown,
           child: const Icon(
@@ -526,48 +530,55 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
 
 
                                           child: Padding(
-                                            padding: const EdgeInsets.only(top:10.0),
+                                            padding: const EdgeInsets.only(
+                                                top: 10.0),
                                             child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              mainAxisAlignment: MainAxisAlignment
+                                                  .spaceEvenly,
                                               children: [
                                                 Column(
                                                   children: [
-                                                    Text(finalprice.toString()??""),
+                                                    Text(
+                                                        finalprice.toString() ??
+                                                            ""),
                                                   ],
                                                 ),
 
 
-                                                        new Container(
-                                                          height:50,
-                                                          child: new Center(
-                                                            child: new Row(
-                                                              mainAxisAlignment: MainAxisAlignment
-                                                                  .spaceEvenly,
-                                                              children: <Widget>[
-                                                                new FloatingActionButton(
-                                                                  onPressed: add,
-                                                                  child: new Icon(
-                                                                    Icons.add,
-                                                                    color: Colors.black,),
-                                                                  backgroundColor: ColorPalette.brown,),
+                                                new Container(
+                                                  height: 50,
+                                                  child: new Center(
+                                                    child: new Row(
+                                                      mainAxisAlignment: MainAxisAlignment
+                                                          .spaceEvenly,
+                                                      children: <Widget>[
+                                                        new FloatingActionButton(
+                                                          onPressed: add,
+                                                          child: new Icon(
+                                                            Icons.add,
+                                                            color: Colors
+                                                                .black,),
+                                                          backgroundColor: ColorPalette
+                                                              .brown,),
 
-                                                                new Text('$_n',
-                                                                    style: new TextStyle(
-                                                                        fontSize: 20.0)),
+                                                        new Text('$_n',
+                                                            style: new TextStyle(
+                                                                fontSize: 20.0)),
 
-                                                                new FloatingActionButton(
-                                                                  onPressed: minus,
-                                                                  child: new Icon(
-                                                                       Icons.remove,
-                                                                      color: Colors
-                                                                          .black),
-                                                                  backgroundColor: ColorPalette.brown),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
+                                                        new FloatingActionButton(
+                                                            onPressed: minus,
+                                                            child: new Icon(
+                                                                Icons.remove,
+                                                                color: Colors
+                                                                    .black),
+                                                            backgroundColor: ColorPalette
+                                                                .brown),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
 
-                                                                                             ],
+                                              ],
                                             ),
                                           ),
                                         )
@@ -644,28 +655,44 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
       ),
     );
   }
+
   void minus() {
     setState(() {
-      final  String? newproductprice =product!.cost.toString();
-      if (_n !=0)
+      final String? newproductprice = product!.cost.toString();
+      if (_n != 0)
         _n--;
-      finalprice= double.parse(newproductprice!)-_n;
+      finalprice = double.parse(newproductprice!) - _n;
     });
   }
+
   void add() {
     setState(() {
-     final  String? newproductprice =product!.cost.toString();
+      final String? newproductprice = product!.cost.toString();
       _n++;
-finalprice=double.parse(newproductprice!)*_n;
-
+      finalprice = double.parse(newproductprice!) * _n;
     });
   }
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  Future<void>  UploadSales(BuildContext context)async {
+    User? user = await FirebaseAuth.instance.currentUser;
+
+    await FirebaseFirestore.instance.collection('Sales').doc(user?.uid).set({
+      "name": product?.name,
+      "cost": product?.cost,
+      "group": product?.group,
+      "CementType": product?.CementType,
+      "company": product?.company,
+      "quantity": product?.quantity,
+      "SalesPrice":finalprice,
+      'SoldQuantity':_n,
+      // "image": image,
+      "description": product?.description,
 
 
-  UploadSales(){
+    });
 
 
+        }
 
 
-  }
 }

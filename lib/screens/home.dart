@@ -12,7 +12,6 @@ import '../widgets/product_group_card.dart';
 import 'global_search_page.dart';
 import 'login.dart';
 
-
 class Home extends StatelessWidget {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -32,13 +31,13 @@ class Home extends StatelessWidget {
               context: context,
               builder: (context) {
                 return AlertDialog(
-
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
                   title: const Text(
                     "Add Product Group",
-                    style: TextStyle(fontFamily: "Nunito",color: ColorPalette.brown),
+                    style: TextStyle(
+                        fontFamily: "Nunito", color: ColorPalette.brown),
                   ),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -120,7 +119,7 @@ class Home extends StatelessWidget {
                           width: 90,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: ColorPalette. brown,
+                            color: ColorPalette.brown,
                             boxShadow: [
                               BoxShadow(
                                 offset: const Offset(0, 3),
@@ -213,58 +212,63 @@ class Home extends StatelessWidget {
                               },
                             ),
                             IconButton(
-                              icon: const Icon(
-                                Icons.power_settings_new,
-                                color: ColorPalette.timberGreen,
-                              ),
-                              onPressed: () {
-                                showDialog<void>(
-                                  context: context,
-                                  barrierDismissible: false, // user must tap button!
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      title: Text('Sign Out'),
-                                      backgroundColor: Colors.white,
-                                      content: SingleChildScrollView(
-                                        child: Column(
-                                          children: <Widget>[
-                                            Text('Are you certain you want to Sign Out?'),
-                                          ],
+                                icon: const Icon(
+                                  Icons.power_settings_new,
+                                  color: ColorPalette.timberGreen,
+                                ),
+                                onPressed: () {
+                                  showDialog<void>(
+                                    context: context,
+                                    barrierDismissible: false,
+                                    // user must tap button!
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                         ),
-                                      ),
-                                      actions: <Widget>[
-                                        TextButton(
-                                          child: Text(
-                                            'Yes',
-                                            style: TextStyle(color: Colors.black),
+                                        title: Text('Sign Out'),
+                                        backgroundColor: Colors.white,
+                                        content: SingleChildScrollView(
+                                          child: Column(
+                                            children: <Widget>[
+                                              Text(
+                                                  'Are you certain you want to Sign Out?'),
+                                            ],
                                           ),
-                                          onPressed: () {
-                                            print('yes');
-                                            FirebaseAuth.instance.signOut();
-                                            Navigator.pushNamedAndRemoveUntil(
-                                                context, '/login', (route) => false);
-                                            // Navigator.of(context).pop();
-                                          },
                                         ),
-                                        TextButton(
-                                          child: Text(
-                                            'Cancel',
-                                            style: TextStyle(color: Colors.red),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: Text(
+                                              'Yes',
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                            onPressed: () {
+                                              print('yes');
+                                              FirebaseAuth.instance.signOut();
+                                              Navigator.pushNamedAndRemoveUntil(
+                                                  context,
+                                                  '/login',
+                                                  (route) => false);
+                                              // Navigator.of(context).pop();
+                                            },
                                           ),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
-                            ),
+                                          TextButton(
+                                            child: Text(
+                                              'Cancel',
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }),
                           ],
                         )
                       ],
@@ -293,8 +297,6 @@ class Home extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 20),
-
-
 
                             // Expanded(
                             //   child: StreamBuilder(
@@ -343,79 +345,31 @@ class Home extends StatelessWidget {
                             // ),
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
-                                child: Row(
+                              child: Row(
                                 children: [
-
-                                     SizedBox(
-                                          height: 200,
-                                          width: 200,
-
-
-                                          child: StreamBuilder(
-                                            stream:
-                                            _firestore.collection("utils").snapshots(),
-                                            builder: (
-                                                BuildContext context,
-                                                AsyncSnapshot<
-                                                    QuerySnapshot<Map<String, dynamic>>>
-                                                snapshot,
-                                                ) {
-                                              if (snapshot.hasData) {
-                                                final List<dynamic> _productGroups =
-                                                snapshot.data!.docs[0].data()['list'] as List<dynamic>;
-                                                _productGroups.sort();
-                                                return GridView.builder(
-                                                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                                    crossAxisCount: 1,
-                                                    childAspectRatio: 2,
-                                                    crossAxisSpacing: 0,
-                                                    mainAxisSpacing: 0,
-                                                  ),
-                                                  itemCount: _productGroups.length,
-                                                  itemBuilder: (context, index) {
-                                                    return ProductGroupCard(
-                                                      name: _productGroups[index] as String,
-                                                      key: UniqueKey(),
-                                                    );
-                                                  },
-                                                );
-                                              } else {
-                                                return const Center(
-                                                  child: SizedBox(
-                                                    height: 40,
-                                                    width: 40,
-                                                    child: CircularProgressIndicator(
-                                                      color: ColorPalette.pacificBlue,
-                                                    ),
-                                                  ),
-                                                );
-                                              }
-                                            },
-                                          ),
-
-
-
-                                     ),
                                   SizedBox(
                                     height: 200,
                                     width: 200,
-
-
                                     child: StreamBuilder(
-                                      stream:
-                                      _firestore.collection("Sales").snapshots(),
+                                      stream: _firestore
+                                          .collection("utils")
+                                          .snapshots(),
                                       builder: (
-                                          BuildContext context,
-                                          AsyncSnapshot<
-                                              QuerySnapshot<Map<String, dynamic>>>
-                                          snapshot,
-                                          ) {
+                                        BuildContext context,
+                                        AsyncSnapshot<
+                                                QuerySnapshot<
+                                                    Map<String, dynamic>>>
+                                            snapshot,
+                                      ) {
                                         if (snapshot.hasData) {
-                                          final  _productGroups =
-                                          snapshot.data!.docs[0].data();
-                                          _productGroups;
+                                          final List<dynamic> _productGroups =
+                                              snapshot.data!.docs[0]
+                                                      .data()['list']
+                                                  as List<dynamic>;
+                                          _productGroups.sort();
                                           return GridView.builder(
-                                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                            gridDelegate:
+                                                const SliverGridDelegateWithFixedCrossAxisCount(
                                               crossAxisCount: 1,
                                               childAspectRatio: 2,
                                               crossAxisSpacing: 0,
@@ -423,10 +377,9 @@ class Home extends StatelessWidget {
                                             ),
                                             itemCount: _productGroups.length,
                                             itemBuilder: (context, index) {
-                                              return SalesGroupCard(
-                                                sales:"SALES",
-
-                                                //"_productGroups[index] as String",
+                                              return ProductGroupCard(
+                                                name: _productGroups[index]
+                                                    as String,
                                                 key: UniqueKey(),
                                               );
                                             },
@@ -444,10 +397,22 @@ class Home extends StatelessWidget {
                                         }
                                       },
                                     ),
-
-
-
                                   ),
+                                  SizedBox(
+                                    height: 200,
+                                    width: 200,
+                                    child: Column(
+                                      children: [
+                                        SalesGroupCard(
+                                          sales: "SALES",
+
+                                          //   //"_productGroups[index] as String",
+                                          // key: UniqueKey(),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+
                                   Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
@@ -464,49 +429,49 @@ class Home extends StatelessWidget {
                                     child: Column(
                                       children: [
                                         Container(
-                                          child: Icon(Icons.person, size: 24, color:Colors.blueAccent),
+                                          child: Icon(Icons.person,
+                                              size: 24,
+                                              color: Colors.blueAccent),
                                           padding: const EdgeInsets.all(12),
                                         ),
                                         Container(
                                           decoration: const BoxDecoration(
                                               color: Colors.blueAccent,
-                                              borderRadius: BorderRadius.only(bottomRight: Radius.circular(12), bottomLeft: Radius.circular(12))
-                                          ),
+                                              borderRadius: BorderRadius.only(
+                                                  bottomRight:
+                                                      Radius.circular(12),
+                                                  bottomLeft:
+                                                      Radius.circular(12))),
                                           child: Text("Student"),
                                           padding: const EdgeInsets.all(12),
                                         )
                                       ],
                                     ),
                                   )
-                                      // SizedBox(
-                                      //   height: 100,
-                                      //   width: 200,
-                                      //   child: Card(
-                                      //       color: ColorPalette.brown,
-                                      //       elevation:5,
-                                      //      // margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
-                                      //       shape: RoundedRectangleBorder(
-                                      //         borderRadius: BorderRadius.circular(30.0),
-                                      //       ),
-                                      //
-                                      //       child: Column(
-                                      //         children: [
-                                      //           Padding(
-                                      //             padding: const EdgeInsets.only(top:30.0),
-                                      //             child: Text("Sales",style: TextStyle(fontSize: 30),),
-                                      //           )
-                                      //         ],
-                                      //       )
-                                      //   ),
-                                      // ),
-
-
-
+                                  // SizedBox(
+                                  //   height: 100,
+                                  //   width: 200,
+                                  //   child: Card(
+                                  //       color: ColorPalette.brown,
+                                  //       elevation:5,
+                                  //      // margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
+                                  //       shape: RoundedRectangleBorder(
+                                  //         borderRadius: BorderRadius.circular(30.0),
+                                  //       ),
+                                  //
+                                  //       child: Column(
+                                  //         children: [
+                                  //           Padding(
+                                  //             padding: const EdgeInsets.only(top:30.0),
+                                  //             child: Text("Sales",style: TextStyle(fontSize: 30),),
+                                  //           )
+                                  //         ],
+                                  //       )
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
-
-
 
                             //
                             // Expanded(
