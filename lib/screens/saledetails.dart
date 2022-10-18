@@ -30,9 +30,10 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final Product? product;
+
   final String? docID;
   final prodprice;
-  double? finalprice;
+  double? finalprice=0.0;
   final productimage;
   int counter = 1;
   final productp;
@@ -87,7 +88,7 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
         child: FloatingActionButton(
           onPressed: () {
             _firestore
-                .collection("products")
+                .collection("Sales")
                 .doc(docID)
                 .update(product!.toMap())
                 .then((value) {
@@ -509,63 +510,65 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
 
                                               border: Border.all(
                                                   width: 4,
-                                                  color: ColorPalette.white),
+                                                  color: ColorPalette.brown),
                                               boxShadow: [
                                                 BoxShadow(
                                                     spreadRadius: 2,
                                                     blurRadius: 10,
-                                                    color: Colors.black
+                                                    color: Colors.transparent
                                                         .withOpacity(0.1),
                                                     offset: const Offset(0, 10))
                                               ]
                                           ),
 
-                                          height: 167.0,
+                                          height: 107.0,
                                           width: width,
 
 
-                                          child: Row(
-                                            children: [
-                                              Text(finalprice.toString()),
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(top:10.0),
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Column(
+                                                  children: [
+                                                    Text(finalprice.toString()??""),
+                                                  ],
+                                                ),
 
-                                              Row(
-                                                children: [
-                                                  new Container(
-                                                    child: new Center(
-                                                      child: new Row(
-                                                        mainAxisAlignment: MainAxisAlignment
-                                                            .spaceEvenly,
-                                                        children: <Widget>[
-                                                          new FloatingActionButton(
-                                                            onPressed: add,
-                                                            child: new Icon(
-                                                              Icons.add,
-                                                              color: Colors
-                                                                  .black,),
-                                                            backgroundColor: Colors
-                                                                .white,),
 
-                                                          new Text('$_n',
-                                                              style: new TextStyle(
-                                                                  fontSize: 60.0)),
+                                                        new Container(
+                                                          height:50,
+                                                          child: new Center(
+                                                            child: new Row(
+                                                              mainAxisAlignment: MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                              children: <Widget>[
+                                                                new FloatingActionButton(
+                                                                  onPressed: add,
+                                                                  child: new Icon(
+                                                                    Icons.add,
+                                                                    color: Colors.black,),
+                                                                  backgroundColor: ColorPalette.brown,),
 
-                                                          new FloatingActionButton(
-                                                            onPressed: minus,
-                                                            child: new Icon(
-                                                                const IconData(
-                                                                    0xe15b,
-                                                                    fontFamily: 'MaterialIcons'),
-                                                                color: Colors
-                                                                    .black),
-                                                            backgroundColor: Colors
-                                                                .white,),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              )
-                                            ],
+                                                                new Text('$_n',
+                                                                    style: new TextStyle(
+                                                                        fontSize: 20.0)),
+
+                                                                new FloatingActionButton(
+                                                                  onPressed: minus,
+                                                                  child: new Icon(
+                                                                       Icons.remove,
+                                                                      color: Colors
+                                                                          .black),
+                                                                  backgroundColor: ColorPalette.brown),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+
+                                                                                             ],
+                                            ),
                                           ),
                                         )
 
@@ -643,8 +646,10 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
   }
   void minus() {
     setState(() {
-      if (_n != 0)
+      final  String? newproductprice =product!.cost.toString();
+      if (_n !=0)
         _n--;
+      finalprice= double.parse(newproductprice!)-_n;
     });
   }
   void add() {
@@ -654,5 +659,13 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
 finalprice=double.parse(newproductprice!)*_n;
 
     });
+  }
+
+
+  UploadSales(){
+
+
+
+
   }
 }

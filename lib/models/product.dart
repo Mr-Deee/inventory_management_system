@@ -26,6 +26,7 @@ class Product {
         CementType: json["CementType"] as String?,
         company: json["company"] as String?,
         quantity: json["quantity"] as int?,
+
        // image: json["image"] as String?,
         description: json["description"] as String?,
     );
