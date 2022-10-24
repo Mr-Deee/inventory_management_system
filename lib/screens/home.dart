@@ -413,41 +413,7 @@ class Home extends StatelessWidget {
                                     ),
                                   ),
 
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 5,
-                                          blurRadius: 7,
-                                          offset: Offset(0, 3),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          child: Icon(Icons.person,
-                                              size: 24,
-                                              color: Colors.blueAccent),
-                                          padding: const EdgeInsets.all(12),
-                                        ),
-                                        Container(
-                                          decoration: const BoxDecoration(
-                                              color: Colors.blueAccent,
-                                              borderRadius: BorderRadius.only(
-                                                  bottomRight:
-                                                      Radius.circular(12),
-                                                  bottomLeft:
-                                                      Radius.circular(12))),
-                                          child: Text("Student"),
-                                          padding: const EdgeInsets.all(12),
-                                        )
-                                      ],
-                                    ),
-                                  )
+
                                   // SizedBox(
                                   //   height: 100,
                                   //   width: 200,
@@ -472,53 +438,42 @@ class Home extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                color: ColorPalette.brown,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 7,
+                                    offset: Offset(0, 3),
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    child: Icon(Icons.person,
+                                        size: 24,
+                                        color: Colors.blueAccent),
+                                    padding: const EdgeInsets.all(12),
+                                  ),
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                        color: ColorPalette.brown,
+                                        borderRadius: BorderRadius.only(
+                                            bottomRight:
+                                            Radius.circular(12),
+                                            bottomLeft:
+                                            Radius.circular(12))),
+                                    child: Text("Transactions"),
+                                    padding: const EdgeInsets.all(12),
+                                  )
+                                ],
+                              ),
+                            )
 
-                            //
-                            // Expanded(
-                            //   child: StreamBuilder(
-                            //     stream:
-                            //     _firestore.collection("Sales").snapshots(),
-                            //     builder: (
-                            //         BuildContext context,
-                            //         AsyncSnapshot<
-                            //             QuerySnapshot<Map<String, dynamic>>>
-                            //         snapshot,
-                            //         ) {
-                            //       if (snapshot.hasData) {
-                            //         final List<dynamic> _productGroups =
-                            //       //  snapshot.data!.docs[0].data()['list']
-                            //         //as List<dynamic>;
-                            //         //_productGroups.sort();
-                            //         return GridView.builder(
-                            //           gridDelegate:
-                            //           const SliverGridDelegateWithFixedCrossAxisCount(
-                            //             crossAxisCount: 1,
-                            //             childAspectRatio: 2,
-                            //             crossAxisSpacing: 20,
-                            //             mainAxisSpacing: 20,
-                            //           ),
-                            //           itemCount: _productGroups.length,
-                            //           itemBuilder: (context, index) {
-                            //             return ProductGroupCard(
-                            //               name: _productGroups[index] as String,
-                            //               key: UniqueKey(),
-                            //             );
-                            //           },
-                            //         );
-                            //       } else {
-                            //         return const Center(
-                            //           child: SizedBox(
-                            //             height: 40,
-                            //             width: 40,
-                            //             child: CircularProgressIndicator(
-                            //               color: ColorPalette.pacificBlue,
-                            //             ),
-                            //           ),
-                            //         );
-                            //       }
-                            //     },
-                            //   ),
-                            // )
                           ],
                         ),
                       ),

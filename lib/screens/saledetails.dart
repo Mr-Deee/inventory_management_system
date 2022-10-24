@@ -35,6 +35,7 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
   final String? docID;
   final prodprice;
   double? finalprice = 0.0;
+  int? updatedquantity= 0;
   final productimage;
   int counter = 1;
   final productp;
@@ -659,24 +660,31 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
   void minus() {
     setState(() {
       final String? newproductprice = product!.cost.toString();
+      final int? newproductquantity = product!.quantity;
+
+
       if (_n != 0)
         _n--;
       finalprice = double.parse(newproductprice!) - _n;
+      updatedquantity= (newproductquantity! +_n);
     });
   }
 
   void add() {
     setState(() {
       final String? newproductprice = product!.cost.toString();
+      final int? newproductquantity = product!.quantity;
       _n++;
       finalprice = double.parse(newproductprice!) * _n;
+      updatedquantity= (newproductquantity! -_n) ;
     });
   }
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   Future<void>  UploadSales(BuildContext context)async {
     User? user = await FirebaseAuth.instance.currentUser;
+    updateproductdetails(context);
 
-    await FirebaseFirestore.instance.collection('Sales').doc(user?.uid).set({
+    await FirebaseFirestore.instance.collection('Sales').doc().set({
       "name": product?.name,
       "cost": product?.cost,
       "group": product?.group,
@@ -691,8 +699,25 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
 
     });
 
+    Navigator.of(context).pop();
 
         }
+Future<void>updateproductdetails(BuildContext context) async
+{
+  _firestore
+      .collection("products")
+      .doc(docID)
+      .update({
+    'quantity': updatedquantity
+  }
+  )
+      .then((value) {
+    showTextToast('Updated Sucessfully!');
+  }).catchError((e) {
 
+    showTextToast('failed');
+  });
+  //Navigator.of(context).pop();
+}
 
 }
