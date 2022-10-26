@@ -92,7 +92,9 @@ class _transactionsState extends State<transactions> {
                                           itemCount:snapshot.data!.docs.length,
                                           itemBuilder: (context, index) {
 
-                                            print('${snapshot.data?.docs[index]['ExpiryDate']}');
+                                            print('${snapshot.data?.docs[index]['SalesPrice']}');
+
+                                            var data  =snapshot.data!.docs;
                                             return Column(
                                               //  textDirection: TextDirection.ltr,
                                                 verticalDirection:
@@ -137,42 +139,7 @@ class _transactionsState extends State<transactions> {
                                                               // scrollDirection: Axis.horizontal,
                                                               Row(
                                                                 children: [
-                                                                  // Padding(
-                                                                  //   padding:
-                                                                  //       const EdgeInsets.all(
-                                                                  //           4.0),
-                                                                  //   child:
-                                                                  //       Column(
-                                                                  //     children: [
-                                                                  //       Container(
-                                                                  //           width:
-                                                                  //               80,
-                                                                  //           height:
-                                                                  //               80,
-                                                                  //           decoration: BoxDecoration(
-                                                                  //               border: Border.all(width: 4, color: Theme.of(context).scaffoldBackgroundColor),
-                                                                  //               boxShadow: [
-                                                                  //                 BoxShadow(spreadRadius: 2, blurRadius: 10, color: Colors.black.withOpacity(0.1), offset: const Offset(0, 10))
-                                                                  //               ],
-                                                                  //               shape: BoxShape.circle,
-                                                                  //               image: const DecorationImage(
-                                                                  //                   fit: BoxFit.cover,
-                                                                  //                   image: NetworkImage(
-                                                                  //                     "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250",
-                                                                  //                   ))),
-                                                                  //           child: CircleAvatar(
-                                                                  //               backgroundColor: Colors.grey,
-                                                                  //               radius: 70,
-                                                                  //               backgroundImage: NetworkImage(
-                                                                  //                 item[index]['Profilepicture'] ?? "",
-                                                                  //                 //     .toString(),
-                                                                  //                 // OModel[index]
-                                                                  //                 //     .profilepicture
-                                                                  //                 //     .toString(),
-                                                                  //               ))),
-                                                                  //     ],
-                                                                  //   ),
-                                                                  // ),
+
                                                                   Row(
                                                                     children: [
                                                                       Column(
@@ -190,8 +157,7 @@ class _transactionsState extends State<transactions> {
                                                                           ),
                                                                           Column(
                                                                             children: [
-                                                                              Text(
-                                                                                snapshot.data?.docs[index]["ExpiryDate"] ?? "",
+                                                                              Text(data[index]["SalesPrice"].toString() ,
                                                                               ),
                                                                             ],
                                                                           ),
@@ -204,7 +170,7 @@ class _transactionsState extends State<transactions> {
                                                                             const EdgeInsets.all(2.0),
                                                                             child:
                                                                             Text(
-                                                                              snapshot.data?.docs[index]["group"],
+                                                                             data[index]["group"],
                                                                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black54),
                                                                             ),
                                                                           ),

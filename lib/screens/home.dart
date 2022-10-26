@@ -9,6 +9,7 @@ import '../functions/toast.dart';
 import '../utils/color_palette.dart';
 import '../widgets/Salescard.dart';
 import '../widgets/product_group_card.dart';
+import 'Transaction.dart';
 import 'global_search_page.dart';
 import 'login.dart';
 
@@ -438,39 +439,48 @@ class Home extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: ColorPalette.brown,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 5,
-                                    blurRadius: 7,
-                                    offset: Offset(0, 3),
-                                  ),
-                                ],
-                              ),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: Icon(Icons.person,
-                                        size: 24,
-                                        color: Colors.blueAccent),
-                                    padding: const EdgeInsets.all(12),
-                                  ),
-                                  Container(
-                                    decoration: const BoxDecoration(
-                                        color: ColorPalette.brown,
-                                        borderRadius: BorderRadius.only(
-                                            bottomRight:
-                                            Radius.circular(12),
-                                            bottomLeft:
-                                            Radius.circular(12))),
-                                    child: Text("Transactions"),
-                                    padding: const EdgeInsets.all(12),
-                                  )
-                                ],
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>  transactions()));
+
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: ColorPalette.brown,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: Offset(0, 3),
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Icon(Icons.person,
+                                          size: 24,
+                                          color: Colors.blueAccent),
+                                      padding: const EdgeInsets.all(12),
+                                    ),
+                                    Container(
+                                      decoration: const BoxDecoration(
+                                          color: ColorPalette.brown,
+                                          borderRadius: BorderRadius.only(
+                                              bottomRight:
+                                              Radius.circular(12),
+                                              bottomLeft:
+                                              Radius.circular(12))),
+                                      child: Text("Transactions"),
+                                      padding: const EdgeInsets.all(12),
+                                    )
+                                  ],
+                                ),
                               ),
                             )
 
