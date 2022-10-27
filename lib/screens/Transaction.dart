@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inventory_management_system/utils/color_palette.dart';
 
 class transactions extends StatefulWidget {
   const transactions({Key? key}) : super(key: key);
@@ -10,15 +11,13 @@ class transactions extends StatefulWidget {
 }
 
 class _transactionsState extends State<transactions> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-
-   final FirebaseFirestore _firestore= FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     var date = DateTime.now().toString();
 
     var dateParse = DateTime.parse(date);
-
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -37,31 +36,25 @@ class _transactionsState extends State<transactions> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(
-                  height: 30.0,
+                  height: 50.0,
                 ),
                 Text(
                   "Sales",
                   style: TextStyle(
-                      fontSize: 16.0,
+                      fontSize: 60.0,
                       fontWeight: FontWeight.bold,
                       fontFamily: "Brand Bold"),
                 ),
-                SizedBox(
-                  height: 22.0,
-                ),
+
                 Divider(
                   thickness: 4.0,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                ),
+
                 SizedBox(
                   // height: size.height,
-                  child: Padding(
-                    padding: const EdgeInsets.all(1.0),
-                    child: ConstrainedBox(
+                  child:  ConstrainedBox(
                       constraints:
-                      BoxConstraints(minHeight: 20, maxHeight: 600),
+                          BoxConstraints(minHeight: 20, maxHeight: 700),
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Column(children: [
@@ -70,120 +63,137 @@ class _transactionsState extends State<transactions> {
                               height: size.height,
                               child: StreamBuilder(
                                   stream: _firestore
-                                      .collection("Sales").where("group", )
+                                      .collection("Sales")
+                                      .where(
+                                        "group",
+                                      )
                                       .orderBy('description')
                                       .snapshots(),
 
                                   //clientRequestRef.onValue,
-                                  builder: ( BuildContext context,
-                                      AsyncSnapshot<
-                                          QuerySnapshot<Map<String, dynamic>>>
-                                      snapshot,) {
+                                  builder: (
+                                    BuildContext context,
+                                    AsyncSnapshot<
+                                            QuerySnapshot<Map<String, dynamic>>>
+                                        snapshot,
+                                  ) {
                                     // print("$snap");
 
-                                    if (snapshot.hasData){
-
-
-
+                                    if (snapshot.hasData) {
                                       return Padding(
                                         padding: const EdgeInsets.all(13.0),
                                         child: ListView.builder(
                                           physics: ScrollPhysics(),
-                                          itemCount:snapshot.data!.docs.length,
+                                          itemCount: snapshot.data!.docs.length,
                                           itemBuilder: (context, index) {
+                                            print(
+                                                '${snapshot.data?.docs[index]['SalesPrice']}');
 
-                                            print('${snapshot.data?.docs[index]['SalesPrice']}');
-
-                                            var data  =snapshot.data!.docs;
+                                            var data = snapshot.data!.docs;
                                             return Column(
-                                              //  textDirection: TextDirection.ltr,
+                                                //  textDirection: TextDirection.ltr,
                                                 verticalDirection:
-                                                VerticalDirection.down,
+                                                    VerticalDirection.down,
                                                 children: <Widget>[
-                                                  SizedBox(
-                                                    height: 5.0,
-                                                  ),
+
+
                                                   Padding(
                                                     padding:
-                                                    const EdgeInsets.only(
-                                                        top: 3.0,
-                                                        left: 0,
-                                                        right: 0),
+                                                        const EdgeInsets.only(
+                                                            top: 20.0,
+                                                            left: 0,
+                                                            right: 0),
 
                                                     child: Card(
 
-
-
+                                                      color: ColorPalette.brown,
                                                       shadowColor: Colors.grey,
-                                                      // shape: const RoundedRectangleBorder(
-                                                      //     borderRadius: BorderRadius.all(
-                                                      //       Radius.circular(20),
-                                                      //     ),
-                                                      //     side: BorderSide(
-                                                      //         width: 2,
-                                                      //         color: Colors.white38)),
-                                                      //color: Colors.white,
-
+                                                      shape:
+                                                          const RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .all(
+                                                                Radius.circular(
+                                                                    20),
+                                                              ),
+                                                              side: BorderSide(
+                                                                  width: 2,
+                                                                  color: Colors
+                                                                      .white38)),
                                                       child: ListView(
                                                           scrollDirection:
-                                                          Axis.vertical,
+                                                              Axis.vertical,
                                                           physics:
-                                                          const NeverScrollableScrollPhysics(),
+                                                              const NeverScrollableScrollPhysics(),
                                                           shrinkWrap: true,
                                                           padding:
-                                                          const EdgeInsets
-                                                              .all(0.0),
+                                                              const EdgeInsets
+                                                                  .all(0.0),
                                                           children: <Widget>[
                                                             //Text(Provider.of<OccupationModel>(context).Institution!,style: TextStyle(color: Colors.black),),
                                                             Column(children: [
                                                               // scrollDirection: Axis.horizontal,
-                                                              Row(
-                                                                children: [
 
-                                                                  Row(
+                                                                  Column(
                                                                     children: [
                                                                       Column(
                                                                         mainAxisAlignment:
-                                                                        MainAxisAlignment.spaceEvenly,
+                                                                            MainAxisAlignment.spaceBetween,
                                                                         children: [
                                                                           Padding(
                                                                             padding:
-                                                                            const EdgeInsets.all(3.0),
+                                                                                const EdgeInsets.only(top:20.0),
                                                                             child:
-                                                                            Text(
-                                                                              snapshot.data?.docs[index]["group"],
+                                                                                Text(
+                                                                              snapshot.data?.docs[index]["CementType"],
                                                                               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.brown),
                                                                             ),
                                                                           ),
                                                                           Column(
                                                                             children: [
-                                                                              Text(data[index]["SalesPrice"].toString() ,
+                                                                              Text("GHC"+" "+
+                                                                                data[index]["SalesPrice"].toString(),
                                                                               ),
                                                                             ],
                                                                           ),
-                                                                        ],
-                                                                      ),
-                                                                      Column(
-                                                                        children: [
+                                                                          Column(
+                                                                            children: [
+                                                                              Padding(
+                                                                                padding:
+                                                                                const EdgeInsets.all(2.0),
+                                                                                child:
+                                                                                Text(
+                                                                                  data[index]["name"],
+                                                                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black54),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
                                                                           Padding(
-                                                                            padding:
-                                                                            const EdgeInsets.all(2.0),
-                                                                            child:
-                                                                            Text(
-                                                                             data[index]["group"],
-                                                                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black54),
+                                                                            padding: const EdgeInsets.only(left:19.0, right: 38),
+                                                                            child: Row(
+                                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                                              children: [
+                                                                                Padding(
+                                                                                  padding:
+                                                                                  const EdgeInsets.all(2.0),
+                                                                                  child:
+                                                                                  Text(
+                                                                                    data[index]["quantity"].toString()+" "+"pcs",
+                                                                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black54),
+                                                                                  ),
+                                                                                ),
+                                                                              ],
                                                                             ),
                                                                           ),
                                                                         ],
                                                                       ),
+
                                                                     ],
                                                                   ),
-                                                                ],
-                                                              ),
+
                                                             ])
                                                           ]),
-
-
                                                     ),
                                                     // child: Container(
                                                     //     margin: EdgeInsets.symmetric(
@@ -347,9 +357,7 @@ class _transactionsState extends State<transactions> {
                                           child: Text("Loading Data..."));
                                     }
                                     return CircularProgressIndicator();
-                                  }
-
-                              ),
+                                  }),
 
                               // const SizedBox(
                               //   height: 10,
@@ -360,7 +368,7 @@ class _transactionsState extends State<transactions> {
                       ),
                     ),
                   ),
-                ),
+
                 SizedBox(
                   height: 30.0,
                 ),
@@ -374,5 +382,4 @@ class _transactionsState extends State<transactions> {
       ),
     );
   }
-  }
-
+}
