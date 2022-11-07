@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:inventory_management_system/screens/Transaction.dart';
 import 'package:inventory_management_system/screens/home.dart';
 import 'package:inventory_management_system/screens/login.dart';
 import 'package:inventory_management_system/screens/signup.dart';
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
         // ForgotPassword.id:(context)=>ForgotPassword(),
         //'/onboarding':(context)=>OnBoardingPage(),
         '/home': (context) => Home(),
-        //SearchScreen.idScreen: (context) => SearchScreen(),
+       '/transactions': (context) => transactions(),
         //profilescreen.idScreen:(context)=>  profilescreen(),
       },
     );

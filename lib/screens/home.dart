@@ -32,6 +32,7 @@ class Home extends StatelessWidget {
               context: context,
               builder: (context) {
                 return AlertDialog(
+                  backgroundColor: ColorPalette.brown,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
@@ -45,7 +46,7 @@ class Home extends StatelessWidget {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color: ColorPalette.white,
+                          color: ColorPalette.brown,
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [
                             BoxShadow(
@@ -387,49 +388,61 @@ class Home extends StatelessWidget {
                                   SizedBox(
                                     height: 180,
                                     width: 200,
-                                    child: Container(
+                                    child: GestureDetector(
 
-                                      // width: 460,
 
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: ColorPalette.brown,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 5,
-                                            blurRadius: 7,
-                                            offset: Offset(0, 3),
-                                          ),
-                                        ],
-                                      ),
-                                      child: Column(
-                                        children: [
-                                      Column(
-                                      children: [
-                                      Container(
-                                      child: Icon(Icons.person,
-                                          size: 24,
-                                          color: Colors.blueAccent),
-                                      padding: const EdgeInsets.all(12),
-                                  ),
-                                  Container(
-                                      decoration: const BoxDecoration(
+                                      onTap:(){
+
+                                        Navigator.pushNamed(
+                                            context,
+                                            '/transactions',
+                                            arguments: (route) => false);
+                                      },
+                                      child: Container(
+
+                                        // width: 460,
+
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(20),
                                           color: ColorPalette.brown,
-                                          borderRadius: BorderRadius.only(
-                                              bottomRight:
-                                              Radius.circular(12),
-                                              bottomLeft:
-                                              Radius.circular(12))),
-                                      child: Text("Transactions"),
-                                      padding: const EdgeInsets.all(12),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(0.5),
+                                              spreadRadius: 5,
+                                              blurRadius: 7,
+                                              offset: Offset(0, 3),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          children: [
+                                        Column(
+                                        children: [
+                                  Container(
+                                          child: Icon(Icons.monetization_on_rounded,
+                                              size: 34,
+                                              color: Colors.black),
+                                          padding: const EdgeInsets.only(top: 60),
+                                  ),
+
+                                  Container(
+                                        decoration: const BoxDecoration(
+                                            color: ColorPalette.brown,
+                                            borderRadius: BorderRadius.only(
+                                                bottomRight:
+                                                Radius.circular(12),
+                                                bottomLeft:
+                                                Radius.circular(12))),
+                                        child: Text("TRANSACTIONS",style: TextStyle(fontSize: 20),),
+                                        padding: const EdgeInsets.all(12),
                                   )
                                 ],
                               ),
-                                            //   //"_productGroups[index] as String",
-                                            // key: UniqueKey(),
+                                              //   //"_productGroups[index] as String",
+                                              // key: UniqueKey(),
 
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
