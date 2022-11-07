@@ -27,7 +27,7 @@ class SalesGroupCard extends StatelessWidget {
           );
         },
         child: Container(
-            height: 90,
+            height: 170,
           alignment: Alignment.center,
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(

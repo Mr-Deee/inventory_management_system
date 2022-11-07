@@ -299,51 +299,7 @@ class Home extends StatelessWidget {
                             ),
                             const SizedBox(height: 20),
 
-                            // Expanded(
-                            //   child: StreamBuilder(
-                            //     stream:
-                            //         _firestore.collection("utils").snapshots(),
-                            //     builder: (
-                            //       BuildContext context,
-                            //       AsyncSnapshot<
-                            //               QuerySnapshot<Map<String, dynamic>>>
-                            //           snapshot,
-                            //     ) {
-                            //       if (snapshot.hasData) {
-                            //         final List<dynamic> _productGroups =
-                            //             snapshot.data!.docs[0].data()['list']
-                            //                 as List<dynamic>;
-                            //         _productGroups.sort();
-                            //         return GridView.builder(
-                            //           gridDelegate:
-                            //               const SliverGridDelegateWithFixedCrossAxisCount(
-                            //             crossAxisCount: 1,
-                            //             childAspectRatio: 2,
-                            //             crossAxisSpacing: 20,
-                            //             mainAxisSpacing: 20,
-                            //           ),
-                            //           itemCount: _productGroups.length,
-                            //           itemBuilder: (context, index) {
-                            //             return ProductGroupCard(
-                            //               name: _productGroups[index] as String,
-                            //               key: UniqueKey(),
-                            //             );
-                            //           },
-                            //         );
-                            //       } else {
-                            //         return const Center(
-                            //           child: SizedBox(
-                            //             height: 40,
-                            //             width: 40,
-                            //             child: CircularProgressIndicator(
-                            //               color: ColorPalette.pacificBlue,
-                            //             ),
-                            //           ),
-                            //         );
-                            //       }
-                            //     },
-                            //   ),
-                            // ),
+
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: Row(
@@ -372,7 +328,7 @@ class Home extends StatelessWidget {
                                             gridDelegate:
                                                 const SliverGridDelegateWithFixedCrossAxisCount(
                                               crossAxisCount: 1,
-                                              childAspectRatio: 2,
+                                              childAspectRatio: 1.1,
                                               crossAxisSpacing: 0,
                                               mainAxisSpacing: 0,
                                             ),
@@ -415,60 +371,49 @@ class Home extends StatelessWidget {
                                   ),
 
 
-                                  // SizedBox(
-                                  //   height: 100,
-                                  //   width: 200,
-                                  //   child: Card(
-                                  //       color: ColorPalette.brown,
-                                  //       elevation:5,
-                                  //      // margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 16.0),
-                                  //       shape: RoundedRectangleBorder(
-                                  //         borderRadius: BorderRadius.circular(30.0),
-                                  //       ),
-                                  //
-                                  //       child: Column(
-                                  //         children: [
-                                  //           Padding(
-                                  //             padding: const EdgeInsets.only(top:30.0),
-                                  //             child: Text("Sales",style: TextStyle(fontSize: 30),),
-                                  //           )
-                                  //         ],
-                                  //       )
-                                  //   ),
-                                  // ),
+
                                 ],
                               ),
                             ),
-                            GestureDetector(
-                              onTap: (){
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>  transactions()));
 
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                  color: ColorPalette.brown,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: Offset(0, 3),
-                                    ),
-                                  ],
-                                ),
-                                child: Column(
-                                  children: [
-                                    Container(
+                              Row(
+                                children: [
+
+
+
+
+
+
+                                  SizedBox(
+                                    height: 180,
+                                    width: 200,
+                                    child: Container(
+
+                                      // width: 460,
+
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: ColorPalette.brown,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.5),
+                                            spreadRadius: 5,
+                                            blurRadius: 7,
+                                            offset: Offset(0, 3),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Column(
+                                        children: [
+                                      Column(
+                                      children: [
+                                      Container(
                                       child: Icon(Icons.person,
                                           size: 24,
                                           color: Colors.blueAccent),
                                       padding: const EdgeInsets.all(12),
-                                    ),
-                                    Container(
+                                  ),
+                                  Container(
                                       decoration: const BoxDecoration(
                                           color: ColorPalette.brown,
                                           borderRadius: BorderRadius.only(
@@ -478,11 +423,22 @@ class Home extends StatelessWidget {
                                               Radius.circular(12))),
                                       child: Text("Transactions"),
                                       padding: const EdgeInsets.all(12),
-                                    )
-                                  ],
-                                ),
+                                  )
+                                ],
                               ),
-                            )
+                                            //   //"_productGroups[index] as String",
+                                            // key: UniqueKey(),
+
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+
+
+
+                                ],
+                              ),
+
 
                           ],
                         ),
