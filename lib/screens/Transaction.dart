@@ -182,7 +182,7 @@ class _transactionsState extends State<transactions> {
                                                                             .all(
                                                                         2.0),
                                                                 child: Text(
-                                                                  data[index]["quantity"]
+                                                                  data[index]["SoldQuantity"]
                                                                           .toString() +
                                                                       " " +
                                                                       "pcs",

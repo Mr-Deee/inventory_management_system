@@ -604,10 +604,17 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
       final int? newproductquantity = product!.quantity;
 
 
-      if (_n != 0)
+      if (_n != 0){
         _n--;
-      finalprice = double.parse(newproductprice!) - _n;
+      finalprice = double.parse(newproductprice!) * _n;
       updatedquantity= (newproductquantity! +_n);
+    }
+      else if(_n==0){
+        _n;
+
+      }
+
+
     });
   }
 
@@ -633,6 +640,7 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
       "quantity": product?.quantity,
       "SalesPrice":finalprice,
       'SoldQuantity':_n,
+
 
       "description": product?.description,
 
