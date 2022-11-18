@@ -34,7 +34,7 @@ class _GlobalSearchPageState extends State<GlobalSearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: ColorPalette.pacificBlue,
+        color: ColorPalette.brown,
         child: SafeArea(
           child: Container(
             color: ColorPalette.aquaHaze,
@@ -51,7 +51,7 @@ class _GlobalSearchPageState extends State<GlobalSearchPage> {
                   width: double.infinity,
                   height: 90,
                   decoration: const BoxDecoration(
-                    color: ColorPalette.pacificBlue,
+                    color: ColorPalette.brown,
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(16),
                       bottomRight: Radius.circular(16),

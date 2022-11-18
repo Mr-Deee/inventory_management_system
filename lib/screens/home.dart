@@ -21,6 +21,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorPalette.brown,
       // floatingActionButton: Padding(
       //   padding: const EdgeInsets.only(
       //     bottom: 10,
@@ -424,9 +425,12 @@ class Home extends StatelessWidget {
                                         Column(
                                         children: [
                                   Container(
-                                          child: Icon(Icons.monetization_on_rounded,
-                                              size: 34,
-                                              color: Colors.black),
+                                          child:Text("₵",
+                                            style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+
+                                          // Icon(Icons.monetization_on_rounded,
+                                          //     size: 34,
+                                          //     color: Colors.black),
                                           padding: const EdgeInsets.only(top: 60),
                                   ),
 
