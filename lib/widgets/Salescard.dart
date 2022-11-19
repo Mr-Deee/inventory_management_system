@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../functions/toast.dart';
 import '../models/product.dart';
 import '../screens/product_details_page.dart';
 import '../utils/color_palette.dart';
@@ -9,8 +11,8 @@ import 'package:inventory_management_system/screens/saledetails.dart';
 class salesCard extends StatelessWidget {
   final Product? product;
   final String? docID;
-
-  const salesCard({Key? key, this.product, this.docID}) : super(key: key);
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+   salesCard({Key? key, this.product, this.docID}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -200,6 +202,26 @@ class salesCard extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
+                  ),
+
+                  IconButton(
+                    icon: const Icon(
+                      Icons.delete,
+                      color: ColorPalette.timberGreen,
+                    ),
+                    onPressed: () {
+
+                      _firestore
+                          .collection("Sales")
+                          .doc(docID)
+                          .delete()
+                          .then((value) {
+                        showTextToast('Deleted Sucessfully!');
+                      }).catchError((e) {
+                        showTextToast('Failed!');
+                      });
+                      Navigator.of(context).pop();
+                    },
                   ),
                 ],
               ),

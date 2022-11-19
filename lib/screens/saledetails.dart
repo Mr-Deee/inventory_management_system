@@ -160,24 +160,7 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
                           ),
                         ],
                       ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.delete,
-                          color: ColorPalette.timberGreen,
-                        ),
-                        onPressed: () {
-                          _firestore
-                              .collection("products")
-                              .doc(docID)
-                              .delete()
-                              .then((value) {
-                            showTextToast('Deleted Sucessfully!');
-                          }).catchError((e) {
-                            showTextToast('Failed!');
-                          });
-                          Navigator.of(context).pop();
-                        },
-                      ),
+
                     ],
                   ),
                 ),
@@ -578,6 +561,10 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
                                                     ),
                                                   ),
                                                 ),
+
+
+
+
 
                                               ],
                                             ),

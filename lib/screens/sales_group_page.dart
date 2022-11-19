@@ -89,15 +89,15 @@ class SalesGroupdPage extends StatelessWidget {
                               );
                             },
                           ),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.delete,
-                              color: ColorPalette.timberGreen,
-                            ),
-                            onPressed: () {
-                              //TODO
-                            },
-                          ),
+                          // IconButton(
+                          //   icon: const Icon(
+                          //     Icons.delete,
+                          //     color: ColorPalette.timberGreen,
+                          //   ),
+                          //   onPressed: () {
+                          //     //TODO
+                          //   },
+                          // ),
                         ],
                       )
                     ],
