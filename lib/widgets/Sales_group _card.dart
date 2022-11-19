@@ -7,8 +7,9 @@ import '../utils/color_palette.dart';
 class SalesGroupCard extends StatelessWidget {
   final String? sales;
   final String? CementType;
+  final String? name;
 
-  const SalesGroupCard({Key? key, this.sales, this.CementType}) : super(key: key);
+  const SalesGroupCard({Key? key, this.sales, this.CementType, this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -25,15 +25,8 @@ class NewProductPage extends StatelessWidget {
         child: FloatingActionButton(
           onPressed: () {
             newProduct.group = group;
-            _firestore
-                .collection("products")
-                .add(newProduct.toMap())
-                .then((value) {
-              showTextToast('Added Sucessfully!');
-            }).catchError((e) {
-              showTextToast('Failed!');
-            });
-            Navigator.of(context).pop();
+            pushtoproducts();
+            Navigator.pop(context);
           },
           splashColor: ColorPalette.bondyBlue,
           backgroundColor: ColorPalette.brown,
@@ -451,12 +444,9 @@ class NewProductPage extends StatelessWidget {
                                                 .withOpacity(0.1),
                                             child: (newProduct.image == null)
                                                 ? Center(
-                                                    child: Icon(
-                                                      Icons.image,
-                                                      color: ColorPalette
-                                                          .nileBlue
-                                                          .withOpacity(0.5),
-                                                    ),
+                                                    child:
+
+                                                    Image.asset('Assets/images/cement.png')
                                                   )
                                                 : CachedNetworkImage(
                                                     fit: BoxFit.cover,
@@ -491,5 +481,29 @@ class NewProductPage extends StatelessWidget {
         ),
       ),
     );
+  }
+   pushtosales(){
+     _firestore
+         .collection("Sales")
+         .add(newProduct.toMap())
+         .then((value) {
+       showTextToast('Pushed to  Sales!');
+     }).catchError((e) {
+       showTextToast('Failed!');
+     });
+   }
+
+
+  pushtoproducts(){
+    pushtosales();
+    _firestore
+        .collection("products")
+        .add(newProduct.toMap())
+        .then((value) {
+      showTextToast('Added Sucessfully!');
+    }).catchError((e) {
+      showTextToast('Failed!');
+    });
+
   }
 }

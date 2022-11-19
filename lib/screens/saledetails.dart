@@ -684,7 +684,7 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
     User? user = await FirebaseAuth.instance.currentUser;
     updateproductdetails(context);
 
-    await FirebaseFirestore.instance.collection('Sales').doc().set({
+    await FirebaseFirestore.instance.collection('Transactions').doc().set({
       "name": product?.name,
       "cost": product?.cost,
       "group": product?.group,
@@ -705,7 +705,7 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
 Future<void>updateproductdetails(BuildContext context) async
 {
   _firestore
-      .collection("products")
+      .collection("Sales")
       .doc(docID)
       .update({
     'quantity': updatedquantity

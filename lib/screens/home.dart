@@ -21,142 +21,142 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(
-          bottom: 10,
-          right: 10,
-        ),
-        child: FloatingActionButton(
-          onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  backgroundColor: ColorPalette.brown,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  title: const Text(
-                    "Add Product Group",
-                    style: TextStyle(
-                        fontFamily: "Nunito", color: ColorPalette.brown),
-                  ),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: ColorPalette.brown,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              offset: const Offset(0, 3),
-                              blurRadius: 6,
-                              color: const Color(0xff000000).withOpacity(0.16),
-                            ),
-                          ],
-                        ),
-                        height: 50,
-                        child: TextField(
-                          textInputAction: TextInputAction.next,
-                          key: UniqueKey(),
-                          controller: _newProductGroup,
-                          keyboardType: TextInputType.text,
-                          style: const TextStyle(
-                            fontFamily: "Nunito",
-                            fontSize: 16,
-                            color: ColorPalette.nileBlue,
-                          ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "Product Group Name",
-                            filled: true,
-                            fillColor: Colors.transparent,
-                            hintStyle: TextStyle(
-                              fontFamily: "Nunito",
-                              fontSize: 16,
-                              color: ColorPalette.brown.withOpacity(0.58),
-                            ),
-                          ),
-                          cursorColor: ColorPalette.timberGreen,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      GestureDetector(
-                        onTap: () async {
-                          if (_newProductGroup.text != null &&
-                              _newProductGroup.text != "") {
-                            try {
-                              final DocumentSnapshot<Map<String, dynamic>>
-                                  _doc = await _firestore
-                                      .collection("utils")
-                                      .doc("productGroups")
-                                      .get();
-                              final List<dynamic> _tempList =
-                                  _doc.data()!['list'] as List<dynamic>;
-                              if (_tempList.contains(_newProductGroup.text)) {
-                                showTextToast("Group Name already created");
-                              } else {
-                                _tempList.add(_newProductGroup.text);
-                                _firestore
-                                    .collection('utils')
-                                    .doc("productGroups")
-                                    .update({'list': _tempList});
-                                showTextToast("Added Successfully");
-                              }
-                            } catch (e) {
-                              showTextToast("An Error Occured!");
-                            }
-                            // ignore: use_build_context_synchronously
-                            Navigator.of(context).pop();
-                            _newProductGroup.text = "";
-                          } else {
-                            showTextToast("Enter Valid Name!");
-                          }
-                        },
-                        child: Container(
-                          height: 45,
-                          width: 90,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: ColorPalette.brown,
-                            boxShadow: [
-                              BoxShadow(
-                                offset: const Offset(0, 3),
-                                blurRadius: 6,
-                                color:
-                                    const Color(0xff000000).withOpacity(0.16),
-                              ),
-                            ],
-                          ),
-                          child: const Center(
-                            child: Text(
-                              "Done",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: "Nunito",
-                                color: ColorPalette.pacificBlue,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            );
-          },
-          splashColor: ColorPalette.bondyBlue,
-          backgroundColor: ColorPalette.brown,
-          child: const Icon(
-            Icons.add,
-            color: ColorPalette.pacificBlue,
-          ),
-        ),
-      ),
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.only(
+      //     bottom: 10,
+      //     right: 10,
+      //   ),
+      //   child: FloatingActionButton(
+      //     onPressed: () {
+      //       showDialog(
+      //         context: context,
+      //         builder: (context) {
+      //           return AlertDialog(
+      //             backgroundColor: ColorPalette.brown,
+      //             shape: RoundedRectangleBorder(
+      //               borderRadius: BorderRadius.circular(30),
+      //             ),
+      //             title: const Text(
+      //               "Add Product Group",
+      //               style: TextStyle(
+      //                   fontFamily: "Nunito", color: ColorPalette.brown),
+      //             ),
+      //             content: Column(
+      //               mainAxisSize: MainAxisSize.min,
+      //               children: [
+      //                 Container(
+      //                   decoration: BoxDecoration(
+      //                     color: ColorPalette.brown,
+      //                     borderRadius: BorderRadius.circular(12),
+      //                     boxShadow: [
+      //                       BoxShadow(
+      //                         offset: const Offset(0, 3),
+      //                         blurRadius: 6,
+      //                         color: const Color(0xff000000).withOpacity(0.16),
+      //                       ),
+      //                     ],
+      //                   ),
+      //                   height: 50,
+      //                   child: TextField(
+      //                     textInputAction: TextInputAction.next,
+      //                     key: UniqueKey(),
+      //                     controller: _newProductGroup,
+      //                     keyboardType: TextInputType.text,
+      //                     style: const TextStyle(
+      //                       fontFamily: "Nunito",
+      //                       fontSize: 16,
+      //                       color: ColorPalette.nileBlue,
+      //                     ),
+      //                     decoration: InputDecoration(
+      //                       border: InputBorder.none,
+      //                       hintText: "Product Group Name",
+      //                       filled: true,
+      //                       fillColor: Colors.transparent,
+      //                       hintStyle: TextStyle(
+      //                         fontFamily: "Nunito",
+      //                         fontSize: 16,
+      //                         color: ColorPalette.brown.withOpacity(0.58),
+      //                       ),
+      //                     ),
+      //                     cursorColor: ColorPalette.timberGreen,
+      //                   ),
+      //                 ),
+      //                 const SizedBox(
+      //                   height: 20,
+      //                 ),
+      //                 GestureDetector(
+      //                   onTap: () async {
+      //                     if (_newProductGroup.text != null &&
+      //                         _newProductGroup.text != "") {
+      //                       try {
+      //                         final DocumentSnapshot<Map<String, dynamic>>
+      //                             _doc = await _firestore
+      //                                 .collection("utils")
+      //                                 .doc("productGroups")
+      //                                 .get();
+      //                         final List<dynamic> _tempList =
+      //                             _doc.data()!['list'] as List<dynamic>;
+      //                         if (_tempList.contains(_newProductGroup.text)) {
+      //                           showTextToast("Group Name already created");
+      //                         } else {
+      //                           _tempList.add(_newProductGroup.text);
+      //                           _firestore
+      //                               .collection('utils')
+      //                               .doc("productGroups")
+      //                               .update({'list': _tempList});
+      //                           showTextToast("Added Successfully");
+      //                         }
+      //                       } catch (e) {
+      //                         showTextToast("An Error Occured!");
+      //                       }
+      //                       // ignore: use_build_context_synchronously
+      //                       Navigator.of(context).pop();
+      //                       _newProductGroup.text = "";
+      //                     } else {
+      //                       showTextToast("Enter Valid Name!");
+      //                     }
+      //                   },
+      //                   child: Container(
+      //                     height: 45,
+      //                     width: 90,
+      //                     decoration: BoxDecoration(
+      //                       borderRadius: BorderRadius.circular(20),
+      //                       color: ColorPalette.brown,
+      //                       boxShadow: [
+      //                         BoxShadow(
+      //                           offset: const Offset(0, 3),
+      //                           blurRadius: 6,
+      //                           color:
+      //                               const Color(0xff000000).withOpacity(0.16),
+      //                         ),
+      //                       ],
+      //                     ),
+      //                     child: const Center(
+      //                       child: Text(
+      //                         "Done",
+      //                         style: TextStyle(
+      //                           fontSize: 15,
+      //                           fontFamily: "Nunito",
+      //                           color: ColorPalette.pacificBlue,
+      //                         ),
+      //                       ),
+      //                     ),
+      //                   ),
+      //                 ),
+      //               ],
+      //             ),
+      //           );
+      //         },
+      //       );
+      //     },
+      //     splashColor: ColorPalette.bondyBlue,
+      //     backgroundColor: ColorPalette.brown,
+      //     child: const Icon(
+      //       Icons.add,
+      //       color: ColorPalette.pacificBlue,
+      //     ),
+      //   ),
+      // ),
       body: DoubleBackToCloseApp(
         snackBar: const SnackBar(
           content: Text('Tap back again to leave'),
@@ -364,8 +364,8 @@ class Home extends StatelessWidget {
                                         SalesGroupCard(
                                           sales: "SALES",
 
-                                          //   //"_productGroups[index] as String",
-                                          // key: UniqueKey(),
+                                         //   name:_productGroups[index] as String,
+                                          key: UniqueKey(),
                                         )
                                       ],
                                     ),
@@ -392,6 +392,11 @@ class Home extends StatelessWidget {
 
 
                                       onTap:(){
+
+                                        // Navigator.pushNamedAndRemoveUntil(context, transactions(
+                                        //
+                                        //   key: UniqueKey(),
+                                        // ), (route) => false)
 
                                         Navigator.pushNamed(
                                             context,

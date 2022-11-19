@@ -3,16 +3,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_management_system/utils/color_palette.dart';
 
+import '../functions/toast.dart';
+
 class transactions extends StatefulWidget {
-  const transactions({Key? key}) : super(key: key);
+  const transactions({Key? key, this.docID}) : super(key: key);
+
+
+  final String? docID;
 
   @override
-  State<transactions> createState() => _transactionsState();
+  State<transactions> createState() => _transactionsState(docID);
 }
+
 
 class _transactionsState extends State<transactions> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  final String? docID;
+
+  _transactionsState(this.docID);
   @override
   Widget build(BuildContext context) {
     var date = DateTime.now().toString();
@@ -43,7 +52,7 @@ class _transactionsState extends State<transactions> {
                 height: size.height,
                 child: StreamBuilder(
                     stream: _firestore
-                        .collection("Sales")
+                        .collection("Transactions")
                         .where(
                           "group",
                         )
@@ -66,8 +75,8 @@ class _transactionsState extends State<transactions> {
                             // physics: ScrollPhysics(),
                             itemCount: snapshot.data!.docs.length,
                             itemBuilder: (context, index) {
-                              print(
-                                  '${snapshot.data?.docs[index]['SalesPrice']}');
+                           /*   print(
+                                  '${snapshot.data?.docs[index]['SalesPrice']}');*/
 
                               var data = snapshot.data!.docs;
                               return Column(
@@ -130,9 +139,8 @@ class _transactionsState extends State<transactions> {
                                                             Text(
                                                               "GHC" +
                                                                   " " +
-                                                                  data[index][
-                                                                          "SalesPrice"]
-                                                                      .toString(),
+                                                                  data[index]["SalesPrice"].toString(),
+
                                                             ),
                                                           ],
                                                         ),
@@ -144,7 +152,7 @@ class _transactionsState extends State<transactions> {
                                                                       .all(2.0),
                                                               child: Text(
                                                                 data[index]
-                                                                    ["name"],
+                                                                ["name"].toString(),
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
@@ -188,6 +196,23 @@ class _transactionsState extends State<transactions> {
                                                                           .black54),
                                                                 ),
                                                               ),
+
+
+                                                              IconButton(icon:Icon(Icons.delete,color: Colors.brown,size: 30,),
+                                                                  onPressed: (){
+                                                                    DocumentSnapshot ds=snapshot.data?.docs[index] as DocumentSnapshot<Object?>;
+
+                                                                    _firestore
+                                                                        .collection("Transactions")
+                                                                        .doc(ds.id)
+                                                                        .delete()
+                                                                        .then((value) {
+                                                                      showTextToast('Deleted Sucessfully!');
+                                                                    }).catchError((e) {
+                                                                      showTextToast('Failed!');
+                                                                    });
+
+                                                                  }) //i want to delete item on click on this icon
                                                             ],
                                                           ),
                                                         ),
@@ -370,5 +395,9 @@ class _transactionsState extends State<transactions> {
         ),
       ),
     );
+  }
+
+  Future<void> deleteindex(String docID)async {
+    return _firestore.collection('Transactions').doc(docID).delete();
   }
 }
