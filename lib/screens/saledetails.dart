@@ -392,53 +392,7 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
                                         const SizedBox(
                                           height: 20,
                                         ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: ColorPalette.brown,
-                                            borderRadius:
-                                            BorderRadius.circular(12),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                offset: const Offset(0, 3),
-                                                blurRadius: 6,
-                                                color: ColorPalette.nileBlue
-                                                    .withOpacity(0.1),
-                                              ),
-                                            ],
-                                          ),
-                                          height: 50,
-                                          child: TextFormField(
-                                            readOnly: true,
-                                            initialValue:
-                                            product!.company ?? '',
-                                            onChanged: (value) {
-                                              product!.company = value;
-                                            },
-                                            textInputAction:
-                                            TextInputAction.next,
-                                            key: UniqueKey(),
-                                            keyboardType: TextInputType.text,
-                                            style: const TextStyle(
-                                              fontFamily: "Nunito",
-                                              fontSize: 16,
-                                              color: ColorPalette.nileBlue,
-                                            ),
-                                            decoration: InputDecoration(
-                                              border: InputBorder.none,
-                                              hintText: "Company",
-                                              filled: true,
-                                              fillColor: Colors.transparent,
-                                              hintStyle: TextStyle(
-                                                fontFamily: "Nunito",
-                                                fontSize: 16,
-                                                color: ColorPalette.nileBlue
-                                                    .withOpacity(0.58),
-                                              ),
-                                            ),
-                                            cursorColor:
-                                            ColorPalette.timberGreen,
-                                          ),
-                                        ),
+
                                         const SizedBox(
                                           height: 20,
                                         ),
@@ -676,11 +630,10 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
       "cost": product?.cost,
       "group": product?.group,
       "CementType": product?.CementType,
-      "company": product?.company,
       "quantity": product?.quantity,
       "SalesPrice":finalprice,
       'SoldQuantity':_n,
-      // "image": image,
+
       "description": product?.description,
 
 
@@ -689,10 +642,14 @@ class _SalesDetailsPageState extends State<SalesDetailsPage> {
     Navigator.of(context).pop();
 
         }
+
+
+
+
 Future<void>updateproductdetails(BuildContext context) async
 {
   _firestore
-      .collection("Sales")
+      .collection("products")
       .doc(docID)
       .update({
     'quantity': updatedquantity

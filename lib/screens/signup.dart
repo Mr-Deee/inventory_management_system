@@ -77,7 +77,7 @@ class _SignUpState extends State<SignUp> {
                                       Padding(
                                         padding: const EdgeInsets.all(20.0),
                                         child: Text(
-                                          "Cement\nManagement",
+                                          "Dzatta Cement\n Warehouse Management",
                                           style: TextStyle(
                                             color: ColorPalette.pacificBlue,
                                             fontFamily: "Nunito",

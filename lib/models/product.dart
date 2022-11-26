@@ -36,7 +36,7 @@ class Product {
         "cost": cost,
         "group": group,
         "CementType": CementType,
-        "company": company,
+        // "company": company,
         "quantity": quantity,
        // "image": image,
         "description": description,

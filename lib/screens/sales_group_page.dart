@@ -129,7 +129,7 @@ class SalesGroupdPage extends StatelessWidget {
                           Expanded(
                             child: StreamBuilder(
                               stream: _firestore
-                                  .collection("Sales")
+                                  .collection("products")
                                   .where("group",isEqualTo: CementType)
 
                                   .orderBy('CementType')

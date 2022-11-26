@@ -338,51 +338,7 @@ class ProductDetailsPage extends StatelessWidget {
                                         const SizedBox(
                                           height: 20,
                                         ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: ColorPalette.brown,
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                offset: const Offset(0, 3),
-                                                blurRadius: 6,
-                                                color: ColorPalette.nileBlue
-                                                    .withOpacity(0.1),
-                                              ),
-                                            ],
-                                          ),
-                                          height: 50,
-                                          child: TextFormField(
-                                            initialValue: product!.company ?? '',
-                                            onChanged: (value) {
-                                              product!.company = value;
-                                            },
-                                            textInputAction:
-                                                TextInputAction.next,
-                                            key: UniqueKey(),
-                                            keyboardType: TextInputType.text,
-                                            style: const TextStyle(
-                                              fontFamily: "Nunito",
-                                              fontSize: 16,
-                                              color: ColorPalette.nileBlue,
-                                            ),
-                                            decoration: InputDecoration(
-                                              border: InputBorder.none,
-                                              hintText: "Company",
-                                              filled: true,
-                                              fillColor: Colors.transparent,
-                                              hintStyle: TextStyle(
-                                                fontFamily: "Nunito",
-                                                fontSize: 16,
-                                                color: ColorPalette.nileBlue
-                                                    .withOpacity(0.58),
-                                              ),
-                                            ),
-                                            cursorColor:
-                                                ColorPalette.timberGreen,
-                                          ),
-                                        ),
+
                                         const SizedBox(
                                           height: 20,
                                         ),

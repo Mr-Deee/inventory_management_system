@@ -67,14 +67,14 @@ class _LoginState extends State<Login> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 40.0),
+                padding: const EdgeInsets.only(top: 20.0),
                 child: Image.asset('Assets/images/cement.png'),
               ),
               const SizedBox(
-                height: 10,
+                height: 4,
               ),
               const Text(
-                "Cement\nManagement",
+                "Dzatta Cement\n Warehouse Management",
                 style: TextStyle(
                   color: ColorPalette.pacificBlue,
                   fontFamily: "Open_Sans",
